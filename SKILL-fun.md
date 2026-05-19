@@ -27,6 +27,8 @@ Commit msg = for person reading `git log` 6 months later. Tell **why** change ex
 
 **Don't merge because of code proximity.** Two features that touch the same function or file are still two commits if they solve different problems. Interleaved changes (where feature A and feature B both modify the same block) should still be split — use `git add -p` to stage hunks selectively, or commit one feature first, then the other. Common trap: "they share infrastructure / touch the same loop" is not a single why.
 
+TL;DR: if you are to create a single commit, you must have an incredibly good reason for doing so. Even splitting the commit to little parts of the subsystem is better than a single commit that touches everything.
+
 ## Gitmoji + Conventional Commits
 
 **Format:** `:gitmoji: type(scope): imperative description`
