@@ -22,7 +22,7 @@ Commit msg = for person reading `git log` 6 months later. Tell **why** change ex
 
 ## Atomic Commits
 
-**Try to split into as many atomic commits as possible.** If there is a list of features (e.g. "Implemented X, Y, and Z types"), split each one into a separate commit. If you ever find yourself saying "+" in a commit message, split it into multiple commits.
+**Try to split into as many atomic commits as possible.** If there is a list of features (e.g. "Implemented X, Y, and Z types"), split each one into a separate commit. If you ever find yourself saying "+" or "and" in a commit message, split it into multiple commits.
 
 **Split by motivation, not subsystem.** Different *whys* = different commits. Same *why* = same commit. "Fix X, Fixed Y" = 2 commits. "Build X, needs A+B+C" = 1 commit if the code won't work without A+B+C; 3 commits if A, B, and C can exist independently. "Crash recovery + its error reporting" = 2 commits. "Fix typo + add feature" = 2 commits.
 
