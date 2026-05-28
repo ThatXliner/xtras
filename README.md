@@ -14,13 +14,22 @@ I created this because I didn't like how Claude committed files when I simply as
 
 ## Installation
 
+### Via Plugin System (recommended)
+
+```bash
+claude plugin marketplace add ThatXliner/claude-plugins
+claude plugin install x-commit
+```
+
+### Via Script
+
 One-liner (clones the repo and optionally installs the global hook guard):
 
 ```bash
 bash <(curl -fsSL https://raw.githubusercontent.com/ThatXliner/x-commit/main/install.sh)
 ```
 
-Or clone manually:
+### Manual Clone
 
 ```bash
 git clone https://github.com/ThatXliner/x-commit.git ~/.claude/skills/x-commit
