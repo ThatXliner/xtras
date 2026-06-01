@@ -14,28 +14,10 @@ I created this because I didn't like how Claude committed files when I simply as
 
 ## Installation
 
-### Via Plugin System (recommended)
-
 ```bash
 claude plugin marketplace add ThatXliner/claude-plugins
 claude plugin install x-commit
 ```
-
-### Via Script
-
-One-liner (clones the repo and optionally installs the global hook guard):
-
-```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/ThatXliner/x-commit/main/install.sh)
-```
-
-### Manual Clone
-
-```bash
-git clone https://github.com/ThatXliner/x-commit.git ~/.claude/skills/x-commit
-```
-
-The skill is automatically discovered by Claude Code on next conversation start.
 
 ## Pairs well with [gah](https://github.com/ThatXliner/gah)
 
@@ -68,7 +50,7 @@ git clone https://github.com/ThatXliner/gah.git .claude/skills/gah
 
 The skill includes a `PreToolUse` hook that validates commit messages follow the x-commit format before allowing them through. This prevents Claude from bypassing the skill when confirming a commit with a short reply like "yes".
 
-The install script will offer to set this up for you. To install it manually, add this to your `~/.claude/settings.json`:
+To enable it globally, add this to your `~/.claude/settings.json`:
 
 ```jsonc
 {

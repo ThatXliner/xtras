@@ -1,1 +1,0 @@
-skills/x-commit/SKILL.md
