@@ -1,7 +1,7 @@
 {
-  "name": "x-commit",
+  "name": "xtras",
   "version": "1.0.0",
-  "description": "Commit skill — gitmoji + conventional commits, atomic commit enforcement, why-not-what messaging",
+  "description": "Extras for Claude Code — x-commit (gitmoji + conventional atomic commits) and x-humanizer (de-AI-ify writing)",
   "author": {
     "name": "ThatXliner"
   },
