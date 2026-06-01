@@ -37,6 +37,33 @@ git clone https://github.com/ThatXliner/x-commit.git ~/.claude/skills/x-commit
 
 The skill is automatically discovered by Claude Code on next conversation start.
 
+## Pairs well with [gah](https://github.com/ThatXliner/gah)
+
+x-commit enforces **atomic commits** split by code dependency — which often means staging only _part_ of a file. But `git add -p` is interactive, and agents can't drive interactive prompts.
+
+[**gah**](https://github.com/ThatXliner/gah) (_Git Add Hunk, built for agents to use_) solves exactly this: non-interactive hunk-based staging. Stage specific hunks by index, content anchor, regex, or line range — no prompts required. Together they let an agent slice a messy working tree into clean, revertable commits.
+
+### Installing gah
+
+**CLI via Cargo:**
+
+```bash
+cargo install gah
+```
+
+**Claude Code Plugin:**
+
+```bash
+/plugin install ThatXliner/gah
+```
+
+Or manually:
+
+```bash
+mkdir -p .claude/skills
+git clone https://github.com/ThatXliner/gah.git .claude/skills/gah
+```
+
 ### Hook guard (recommended)
 
 The skill includes a `PreToolUse` hook that validates commit messages follow the x-commit format before allowing them through. This prevents Claude from bypassing the skill when confirming a commit with a short reply like "yes".
@@ -70,33 +97,6 @@ The skill activates automatically when Claude is writing commit messages, stagin
 
 ```
 /x-commit
-```
-
-## Pairs well with [gah](https://github.com/ThatXliner/gah)
-
-x-commit enforces **atomic commits** split by code dependency — which often means staging only _part_ of a file. But `git add -p` is interactive, and agents can't drive interactive prompts.
-
-[**gah**](https://github.com/ThatXliner/gah) (_Git Add Hunk, built for agents to use_) solves exactly this: non-interactive hunk-based staging. Stage specific hunks by index, content anchor, regex, or line range — no prompts required. Together they let an agent slice a messy working tree into clean, revertable commits.
-
-### Installing gah
-
-**CLI via Cargo:**
-
-```bash
-cargo install gah
-```
-
-**Claude Code Plugin:**
-
-```bash
-/plugin install ThatXliner/gah
-```
-
-Or manually:
-
-```bash
-mkdir -p .claude/skills
-git clone https://github.com/ThatXliner/gah.git .claude/skills/gah
 ```
 
 ## License
