@@ -3,11 +3,5 @@
   "version": "1.0.0",
   "description": "Commit skill — gitmoji + conventional commits, atomic commit enforcement, why-not-what messaging",
   "author": "ThatXliner",
-  "license": "MIT",
-  "skills": [
-    {
-      "name": "x-commit",
-      "file": "../SKILL.md"
-    }
-  ]
+  "license": "MIT"
 }
