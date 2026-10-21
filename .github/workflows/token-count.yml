@@ -5,9 +5,11 @@ on:
     branches: [main]
     paths:
       - "skills/**/SKILL.md"
+      - ".github/workflows/token-count.yml"
   pull_request:
     paths:
       - "skills/**/SKILL.md"
+      - ".github/workflows/token-count.yml"
 
 jobs:
   count-tokens:
@@ -17,16 +19,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: oven-sh/setup-bun@v2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24.22.1"
 
       - name: Install tiktoken
-        run: bun add tiktoken
+        run: npm install --no-save tiktoken
 
       - name: Count tokens
         id: count
         run: |
           count() {
-            bun -e '
+            node --input-type=module -e '
             import { encoding_for_model } from "tiktoken";
             import { readFileSync, existsSync } from "fs";
             const f = process.argv[1];
