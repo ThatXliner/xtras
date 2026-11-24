@@ -2,7 +2,6 @@
 
 **Look:** copy that sounds like a smart, kind person talking: clear first, funny only when it's easy, never selling harder than the truth.
 **Good for:** product copy, marketing pages, emails, release notes, captions and video scripts.
-**Source:** distilled from the [Mailchimp Content Style Guide](https://styleguide.mailchimp.com/voice-and-tone/) (CC BY-NC 4.0, © Mailchimp) and common lists of AI writing tells. Not endorsed by Mailchimp.
 
 ## Voice
 

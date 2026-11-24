@@ -2,7 +2,6 @@
 
 **Look:** classic character animation: characters who think before they move, move with weight, and act out every line.
 **Good for:** cartoons, animated explainers with characters, game cutscenes, mascots.
-**Source:** the 12 principles of animation from Frank Thomas and Ollie Johnston, *The Illusion of Life: Disney Animation* (1981).
 
 ## Acting
 

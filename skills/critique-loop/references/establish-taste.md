@@ -50,7 +50,7 @@ Then ask the three questions below, in one or two batches, as multiple choice wh
 
 Write to `~/.claude/critique-loop/taste.md`. It lives outside the plugin, so updates never overwrite it; agents other than Claude Code use the same path under their own config directory (for example `~/.codex/`). Rules that belong to one project, such as a brand's call to action, go in `.claude/critique-loop/taste.md` at that repository's root instead.
 
-If they picked a recipe, copy its rules into the file under a heading naming the recipe and its source, then add their own answers. Where their own words contradict a recipe rule, theirs win: delete the recipe rule.
+If they picked a recipe, copy its rules into the file under a heading naming the recipe, then add their own answers. Where their own words contradict a recipe rule, theirs win: delete the recipe rule.
 
 Follow the format of [epic-indie.md](recipes/epic-indie.md): group rules under short headings, and for each rule say what to catch, quote the reaction it came from, and say why in a clause. Leave out anything they didn't actually choose or say: a rule you guessed will fail work they'd have liked.
 

@@ -32,15 +32,15 @@ Like Fujifilm film simulations, recipes are known looks you can start your taste
 
 | Recipe | Look | Built from |
 |---|---|---|
-| [Epic Indie](references/recipes/epic-indie.md) | big, acted-out, honest | my own taste file |
-| [Retention First](references/recipes/retention-first.md) | the thumbnail's promise, delivered fast | reporting on MrBeast's production guide |
-| [Bright Explainer](references/recipes/bright-explainer.md) | sourced ideas as bright visual metaphors | Kurzgesagt's published process |
-| [Saturday Morning](references/recipes/saturday-morning.md) | classic character animation | Disney's 12 principles (*The Illusion of Life*) |
-| [No Default UI](references/recipes/no-default-ui.md) | a page only this product could have | Anthropic's frontend-design, taste-skill, agent-design-taste, tastemaker |
-| [Quiet Motion](references/recipes/quiet-motion.md) | fast, purposeful UI motion | Emil Kowalski's design-engineering skill |
-| [Plain & Friendly](references/recipes/plain-and-friendly.md) | clear copy, dry humour, no hype | Mailchimp's content style guide |
+| [Epic Indie](references/recipes/epic-indie.md) | big, acted-out, honest | my own taste file, from rejections of real work |
+| [Retention First](references/recipes/retention-first.md) | the thumbnail's promise, delivered fast | public reporting on MrBeast's guide "How to Succeed in MrBeast Production" ([Simon Willison](https://simonwillison.net/2024/Sep/15/how-to-succeed-in-mrbeast-production/), [Tubefilter](https://www.tubefilter.com/2024/09/17/mrbeast-internal-production-guide-leaked-key-points/)) |
+| [Bright Explainer](references/recipes/bright-explainer.md) | sourced ideas as bright visual metaphors | [Kurzgesagt's published process](https://kurzgesagt.org/youtube/) |
+| [Saturday Morning](references/recipes/saturday-morning.md) | classic character animation | the 12 principles from Frank Thomas and Ollie Johnston, *The Illusion of Life: Disney Animation* (1981) |
+| [No Default UI](references/recipes/no-default-ui.md) | a page only this product could have | Anthropic's [frontend-design](https://github.com/anthropics/skills/tree/main/skills/frontend-design), [taste-skill](https://github.com/Leonxlnx/taste-skill) (MIT), [agent-design-taste](https://github.com/aievolutionpl/agent-design-taste) (MIT), [tastemaker](https://github.com/Harrypatria/tastemaker) (MIT) |
+| [Quiet Motion](references/recipes/quiet-motion.md) | fast, purposeful UI motion | Emil Kowalski's [design-engineering skill](https://github.com/emilkowalski/skills) |
+| [Plain & Friendly](references/recipes/plain-and-friendly.md) | clear copy, dry humour, no hype | the [Mailchimp Content Style Guide](https://styleguide.mailchimp.com/voice-and-tone/) (CC BY-NC 4.0, © Mailchimp) and common lists of AI writing tells |
 
-Recipes are summaries in my own words, not endorsed by their sources. Send a PR with yours.
+Recipes are summaries in my own words, not written or endorsed by their sources. Send a PR with yours.
 
 ## Sources
 

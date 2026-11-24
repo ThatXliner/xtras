@@ -2,7 +2,6 @@
 
 **Look:** big, acted-out, honest. Ambitious motion and sound on an indie budget, with every claim true.
 **Good for:** game trailers, launch videos, explainer shorts, app promos.
-**Source:** the xtras author's own taste file, built from rejections of real work. Each rule quotes the reaction it came from.
 
 ## Ambition
 
