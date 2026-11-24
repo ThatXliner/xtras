@@ -1,13 +1,22 @@
 ---
 name: x-names
-description: Name variables, constants, fields, types and functions so a reader can predict what they hold from the use site alone. Use when choosing or reviewing identifier names, designing a config or data shape, renaming during a refactor, or when a name is vague or missing units.
+description: Name variables, constants, fields, types and functions so a reader can predict what they hold from the use site alone. Use when choosing or reviewing identifier names, designing a config or data shape, renaming during a refactor, or when a name is vague, off-glossary or missing units.
 ---
 
 # Naming identifiers
 
 **The test:** a reader sees the name at a use site or in a diff, without its definition, type or comment. Do they correctly predict what it holds or does? Every rule below is a common way names fail that test. When rules conflict or none applies, apply the test and say which way you went.
 
-Match the codebase's existing conventions, which beat this file. Point out a conflict instead of renaming unasked.
+## First: the project's vocabulary
+
+Before naming a domain concept, look for `GLOSSARY.md` (or `GLOSSARY-MAP.md`, which points to one glossary per context; older repos use `CONTEXT.md`).
+
+- A glossary term is the identifier for that concept: `Invoice`, not `Bill`. Words under `_Avoid_` are banned in code too.
+- Use the glossary of the context the code lives in. One word can mean different things in two contexts.
+- If the concept has no term yet, propose one and say so instead of inventing it silently. Recording it is the `domain-modeling` skill's job, if available.
+- If an ADR in `docs/adr/` explains why something has its name, follow it.
+
+Then match the codebase's existing conventions, which beat this file. Point out a conflict instead of renaming unasked.
 
 ## 1. Put the unit in the name
 
