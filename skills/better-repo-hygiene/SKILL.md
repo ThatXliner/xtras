@@ -7,15 +7,14 @@ description: Audit and clean up git leftovers (uncommitted work, unpushed branch
 
 Delete only what is provably on GitHub. Push what isn't, and never force-push. Commit or report stray work, never discard it. Every deletion is a command the audit printed, not one you composed, because the audit is what proves it safe.
 
-## Dry run
-
-If the user asks for a dry run, or passes `--dry-run`, run steps 1 and 2 only. Don't run any `save` or `safe` command, and don't commit, push, archive or delete anything. Then report as in step 6, in the future tense: what would be rescued, pushed, archived, removed and left alone. Use the audit's summary line for space: what the safe set frees, and what saving first would free on top. End by saying the real run is the same request without `--dry-run`.
+Every run asks twice and waits for the answer each time. It confirms the folders before auditing, and the plan before changing anything. Use `AskUserQuestion` if you have it. `--dry-run`, or asking for a dry run, stops after showing the plan, with no second question, because the user doesn't intend to clean up.
 
 ## 1. Scope and baseline
 
 - One repo: run from it, or pass its path.
-- "All my projects": use the folder the user names. If they name none, use the folder that holds the current repo, as long as it holds other repos too. Otherwise pass every one of `~/Developer`, `~/code`, `~/src`, `~/projects`, `~/dev`, `~/repos`, `~/workspace` and `~/git` that exists. Tell the user which folders you scanned.
-- Record free space with `df -k /` before touching anything.
+- "All my projects": use the folder the user names. If they name none, use the folder that holds the current repo, as long as it holds other repos too. Otherwise pass every one of `~/Developer`, `~/code`, `~/src`, `~/projects`, `~/dev`, `~/repos`, `~/workspace` and `~/git` that exists.
+- **Confirm the scope.** Ask the user to confirm the exact paths, with how many repos each holds, and let them change the list. Don't audit until they answer.
+- Record free space with `df -k /`.
 
 ## 2. Audit
 
@@ -30,7 +29,10 @@ It fetches with `--prune` (if the fetch fails, nothing in that repo is marked `s
 - `save` means the work exists only on this machine, so push it.
 - `hold` needs a person: uncommitted work, a branch that diverged from origin, a locked worktree, over 200 MB of ignored files, or activity in the last 24h.
 
-Show the user the summary line and the `save` and `hold` rows before acting.
+**Show the plan.** Report as in step 6, in the future tense, from the audit: what would be rescued, pushed, archived, removed, switched and left alone. Use the audit's summary line for space: what the safe set frees, and what saving held work first frees on top.
+
+- **Dry run:** stop here. Say that nothing was changed.
+- **Otherwise, confirm the plan.** Ask whether to run all of it, only the deletions that need no saving (no pushes or rescue branches), or nothing, and let them exclude items. Run only what they approve.
 
 ## 3. Save first
 
