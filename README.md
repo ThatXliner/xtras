@@ -5,6 +5,7 @@
 [![X-names Tokens](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2FThatXliner%2Fcffd977aeb3539c0571ee27356d3a0b3%2Fraw%2Fx-names-tokens.json)](skills/x-names/README.md)
 [![Better-tools Tokens](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2FThatXliner%2Fcffd977aeb3539c0571ee27356d3a0b3%2Fraw%2Fbetter-tools-tokens.json)](skills/better-tools/README.md)
 [![Skill-token-compression Tokens](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2FThatXliner%2Fcffd977aeb3539c0571ee27356d3a0b3%2Fraw%2Fskill-token-compression-tokens.json)](skills/skill-token-compression/README.md)
+[![Skill-packaging Tokens](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2FThatXliner%2Fcffd977aeb3539c0571ee27356d3a0b3%2Fraw%2Fskill-packaging-tokens.json)](skills/skill-packaging/README.md)
 
 **xtras** bundles my Claude Code skills into one plugin. The prefix tells you what kind of skill it is.
 
@@ -27,6 +28,7 @@ Faster or more correct than Claude's defaults, with nothing to disagree with.
 Tools you run when you need them.
 
 - **[skill-token-compression](skills/skill-token-compression/README.md)** — cut a skill's token cost without turning its rules into riddles: measure by load level, cut material instead of sentences, and check the result on a fresh reader before shipping.
+- **[skill-packaging](skills/skill-packaging/README.md)** — turn a workflow or body of knowledge into a finished skill: research sources and existing skills first, give every rule its reason, keep it compact, verify it, install it and document it.
 
 ## Installation
 
