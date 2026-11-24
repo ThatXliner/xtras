@@ -24,7 +24,7 @@ Critics can read text and look at images; they can't play a video or hear audio.
 
 - **Video or animation:** run `node <this-skill>/scripts/pack.mjs <video> --ref <reference video>... --out <dir>`. It writes 5 fps frame strips (motion), a contact sheet (composition and variety), a spectrogram (audio texture), and prints frozen-frame share and loudness for the work and each reference. Add `--ignore-band 0.6,0.75` when burned-in captions would hide frozen art.
 - **Audio-only:** the same script gives the spectrogram and loudness numbers. Add the narration script or lyrics, and list the music tracks used in the project's recent pieces so a repeat is visible.
-- **Images, illustrations, UI:** screenshots at real display size, plus close crops of the focal detail. For UI motion, a screen recording run through `pack.mjs`.
+- **Images, illustrations, UI:** screenshots at real display size, plus close crops of the focal detail. For UI, capture them the way the `show-me` skill does, in the real running app. For UI motion, a screen recording run through `pack.mjs`.
 - **Copy:** the text exactly as it will appear, with the facts file from step 1.
 
 Set hard gates from the numbers where the project has them (for example, the Billion video pipeline fails a video above 12% frozen frames). If a gate fails, don't send critics yet: fix it, rebuild the pack, and only then start the round.
