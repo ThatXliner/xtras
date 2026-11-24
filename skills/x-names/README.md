@@ -1,5 +1,7 @@
 # x-names
 
+[![X-names Tokens](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2FThatXliner%2Fcffd977aeb3539c0571ee27356d3a0b3%2Fraw%2Fx-names-tokens.json)](https://github.com/ThatXliner/xtras/blob/main/skills/x-names/SKILL.md)
+
 Part of the [**xtras**](../../README.md) plugin.
 
 Teaches Claude to name things so a reader can predict what a name holds or does from the call site alone, without opening the definition. Left to itself, Claude reaches for `data`, `handler`, `cooldown: 3` and `Manager`. This skill makes it write `unpaidInvoices`, `handleLinkClick`, `cooldownSeconds: 3` and a noun that says what the class is.
