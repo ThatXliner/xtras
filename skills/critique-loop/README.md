@@ -26,7 +26,21 @@ Needs `ffmpeg` and `ffprobe`. `--ignore-band` skips a horizontal band when measu
 
 Critics judge against **your** taste file at `~/.claude/critique-loop/taste.md`, plus an optional per-project one at `.claude/critique-loop/taste.md`. If you don't have one, the skill helps you build it the first time: it gathers what you've already said (CLAUDE.md, memory, this conversation), asks you to pick between contrasting directions, and asks which common failures you hate, then shows you the file. After that it grows by itself: every time you reject something, the rule is added in your words. Automated runs with nobody to ask fall back to your references and say so.
 
-[`references/example-taste.md`](references/example-taste.md) is mine, as an example of the format.
+## Recipes
+
+Like Fujifilm film simulations, recipes are known looks you can start your taste file from, or name for a single piece ("critique it like Retention First"). Each one is distilled from a public source and credited; your own rules always win over a recipe's.
+
+| Recipe | Look | Built from |
+|---|---|---|
+| [Epic Indie](references/recipes/epic-indie.md) | big, acted-out, honest | my own taste file |
+| [Retention First](references/recipes/retention-first.md) | the thumbnail's promise, delivered fast | reporting on MrBeast's production guide |
+| [Bright Explainer](references/recipes/bright-explainer.md) | sourced ideas as bright visual metaphors | Kurzgesagt's published process |
+| [Saturday Morning](references/recipes/saturday-morning.md) | classic character animation | Disney's 12 principles (*The Illusion of Life*) |
+| [No Default UI](references/recipes/no-default-ui.md) | a page only this product could have | Anthropic's frontend-design, taste-skill, agent-design-taste, tastemaker |
+| [Quiet Motion](references/recipes/quiet-motion.md) | fast, purposeful UI motion | Emil Kowalski's design-engineering skill |
+| [Plain & Friendly](references/recipes/plain-and-friendly.md) | clear copy, dry humour, no hype | Mailchimp's content style guide |
+
+Recipes are summaries in my own words, not endorsed by their sources. Send a PR with yours.
 
 ## Sources
 

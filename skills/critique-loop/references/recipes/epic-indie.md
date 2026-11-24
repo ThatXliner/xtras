@@ -1,6 +1,8 @@
-# Example taste file
+# Epic Indie
 
-This is one person's taste file (the xtras author's), kept as an example of the format: each rule says what to catch, quotes the reaction it came from, and says why. It is **not** a default bar. Critics judge against the user's own file; see [establish-taste.md](establish-taste.md).
+**Look:** big, acted-out, honest. Ambitious motion and sound on an indie budget, with every claim true.
+**Good for:** game trailers, launch videos, explainer shorts, app promos.
+**Source:** the xtras author's own taste file, built from rejections of real work. Each rule quotes the reaction it came from.
 
 ## Ambition
 
