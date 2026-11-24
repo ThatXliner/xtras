@@ -14,7 +14,7 @@ Cleans up the git mess that agent sessions leave behind, in one repo or every re
 
 **Stashes are checked against the code, not their age.** A stash is safe to drop only if reverse-applying it to the default branch succeeds, which means its changes already landed. Otherwise it becomes a branch and gets pushed.
 
-**Worktrees can hold files git doesn't track.** Removing a worktree deletes its ignored files too. A worktree whose `.env` or local settings differ from the main checkout's is held, with the files listed. Build output like `node_modules` and `dist` doesn't count.
+**Worktrees can hold files git doesn't track.** Removing a worktree deletes its ignored files too, so any `.env`, local settings or notes that the main checkout lacks are archived to `~/.repo-hygiene/backups/<date>/` first. Build output and caches (`node_modules`, `dist`, Tauri's `gen/schemas`) are skipped. Over 200 MB of such files, the worktree is held instead.
 
 **Save, then delete.** Unpushed branches are pushed and stray uncommitted work goes on a `rescue/` branch. Work touched in the last 24 hours is left alone, since a running session may own it.
 
@@ -28,7 +28,7 @@ Cleans up the git mess that agent sessions leave behind, in one repo or every re
 node --test skills/better-repo-hygiene/scripts/audit.test.mjs
 ```
 
-The tests build a throwaway repo with a pushed, a local-only, a squash-merged and a diverged branch, an applied stash and a lost one, a worktree holding the only copy of a `.env`, and a main checkout off `main`. They check each verdict and the `--freed` total.
+The tests build a throwaway repo with a pushed, a local-only, a squash-merged and a diverged branch, an applied stash and a lost one, a worktree holding the only copy of a `.env` (archived, then restored from the archive), and a main checkout off `main`. They check each verdict and the `--freed` total.
 
 ## Origin
 

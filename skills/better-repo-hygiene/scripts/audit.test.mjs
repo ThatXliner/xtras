@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
-import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 
@@ -76,9 +76,11 @@ test("each leftover gets the verdict that keeps work safe", () => {
   const verdict = (key) => found[key]?.verdict;
   assert.equal(verdict("branch:pushed"), "safe", "a branch on origin whose worktree is removable is safe");
   assert.equal(verdict("worktree:wt-pushed"), "safe", "a clean, old worktree on a pushed branch is safe");
-  assert.equal(verdict("worktree:wt-secret"), "hold", "a worktree holding the only copy of an ignored .env is held");
+  assert.equal(verdict("worktree:wt-secret"), "safe", "a worktree holding the only copy of a small ignored .env is removable");
   assert.deepEqual(found["worktree:wt-secret"].files, [".env"]);
-  assert.equal(verdict("branch:squashed"), "hold", "its branch is held while that worktree stays");
+  assert.match(found["worktree:wt-secret"].cmd, /tar .*-czf .*\.env && git .*worktree remove/, "the .env is archived before the worktree is removed");
+  assert.equal(found["worktree:wt-pushed"].archive, undefined, "build output like node_modules is not archived");
+  assert.equal(verdict("branch:squashed"), "safe", "a branch whose patches are in main is safe");
   assert.equal(verdict("branch:diverged"), "hold", "a diverged branch is held, never force-pushed");
   assert.equal(verdict("branch:local-only"), "save", "an unpushed branch is pushed, not deleted");
   const stashes = Object.values(found).filter((f) => f.kind === "stash");
@@ -86,6 +88,16 @@ test("each leftover gets the verdict that keeps work safe", () => {
   const main = Object.values(found).find((f) => f.kind === "main checkout");
   assert.match(main.cmd, /switch main/, "a main checkout off the default branch is switched back");
   assert.ok(!Object.values(found).some((f) => f.cmd?.includes("--force") || f.cmd?.includes("push -f")), "no command force-pushes");
+});
+
+test("archiving keeps the only copy of an ignored file", () => {
+  const repo = fixture();
+  const home = mkdtempSync(join(tmpdir(), "repo-hygiene-home-"));
+  const found = JSON.parse(execFileSync("node", [join(import.meta.dirname, "audit.mjs"), "--json", "--no-fetch", repo], { encoding: "utf8", env: { ...process.env, HOME: home } }));
+  const secret = found.find((f) => f.name.endsWith("wt-secret"));
+  execFileSync("sh", ["-c", secret.cmd]);
+  assert.equal(execFileSync("tar", ["-xOzf", secret.archive, ".env"], { encoding: "utf8" }), "TOKEN=only-here");
+  assert.ok(!existsSync(secret.name), "the worktree is gone");
 });
 
 test("--freed totals the worktrees that are gone since the saved audit", () => {

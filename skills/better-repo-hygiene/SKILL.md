@@ -21,9 +21,9 @@ node <this-skill>/scripts/audit.mjs --json <...> > <scratch>/before.json
 
 It fetches with `--prune` (if the fetch fails, nothing in that repo is marked `safe`), then gives every leftover a verdict and its exact command:
 
-- `safe` means it's on GitHub or already applied. A branch counts as on GitHub when its commits are on origin, its tip is the head of a merged PR, or `git cherry` shows its patches in the default branch, which covers squash merges. A clean worktree also needs no recent commits, and no ignored files like `.env` without an identical copy in the main checkout.
+- `safe` means it's on GitHub or already applied. A branch counts as on GitHub when its commits are on origin, its tip is the head of a merged PR, or `git cherry` shows its patches in the default branch, which covers squash merges. A clean worktree also needs no recent commits. If it holds ignored files the main checkout lacks, like `.env`, its command first archives them to `~/.repo-hygiene/backups/<date>/`.
 - `save` means the work exists only on this machine, so push it.
-- `hold` needs a person: uncommitted work, a branch that diverged from origin, a locked worktree, the only copy of an ignored file, or activity in the last 24h.
+- `hold` needs a person: uncommitted work, a branch that diverged from origin, a locked worktree, over 200 MB of ignored files, or activity in the last 24h.
 
 Show the user the summary line and the `save` and `hold` rows before acting.
 
@@ -31,7 +31,7 @@ Show the user the summary line and the `save` and `hold` rows before acting.
 
 - Run every `save` command. A stash becomes a `stash/N-date` branch, so push that branch too.
 - **Uncommitted work** edited more than 24 hours ago: commit it with `/x-commit` onto a new `rescue/<date>-<topic>` branch (never onto the default branch), then push it. Work edited in the last 24 hours may belong to a running session, so leave it alone and report it.
-- **Diverged branches and ignored-only files**: report them with the files listed. Don't pick a side, and don't copy secrets around.
+- **Diverged branches and oversized ignored files**: report them with the files listed. Don't pick a side.
 - If the main checkout is off its default branch with nothing to save, run its `switch` command.
 
 Then rerun the audit and overwrite `before.json` with the new `--json` output, so step 5 measures from here. Saved items now come back `safe`.
@@ -54,4 +54,4 @@ df -k /
 
 ## 6. Report
 
-Lead with the space freed. Then list what was saved and where it was pushed, what was deleted (counts by kind), every `hold` with its reason, and any blocked commands.
+Lead with the space freed. Then list what was saved and where it was pushed, where archives went, what was deleted (counts by kind), every `hold` with its reason, and any blocked commands.
