@@ -12,8 +12,7 @@ A new xtras skill is done when its `SKILL.md` and `README.md` exist, it is liste
 Choose the prefix from the root README's sections:
 
 - `x-` for the user's taste (`x-commit`, `x-names`).
-- `better-` for objective improvements with nothing to disagree with (`better-tools`).
-- No prefix for utilities you run when needed (`skill-token-compression`).
+- No prefix for everything else (`skill-token-compression`, `show-me`).
 
 Name it after what it does. Check that the name isn't taken in `skills/`, `~/.claude/skills`, `~/.codex/skills` or `claude plugin list`.
 
