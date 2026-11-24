@@ -1,6 +1,6 @@
 ---
 name: x-names
-description: Name variables, constants, fields, types and functions so a reader can predict what they hold from the use site alone. Use when choosing or reviewing identifier names, designing a config or data shape, renaming during a refactor, or when a name is vague, off-glossary or missing units. Also use when writing new code that introduces types, fields or config, even if the user doesn't mention naming.
+description: Name variables, constants, fields, types and functions so a reader can predict what they hold from the use site alone. Use when choosing or reviewing identifier names, designing a config or data shape, renaming during a refactor, or when a name is vague, inconsistent with the project's terms, or missing units. Also use when writing new code that introduces types, fields or config, even if the user doesn't mention naming.
 ---
 
 # Naming identifiers
@@ -9,12 +9,12 @@ description: Name variables, constants, fields, types and functions so a reader 
 
 ## First: the project's vocabulary
 
-Before naming a domain concept, look for `GLOSSARY.md` (or `GLOSSARY-MAP.md`, which points to one glossary per context; older repos use `CONTEXT.md`).
+Name domain concepts with the words the project already uses for them. Readers know the domain through those words, so a synonym makes them wonder whether it's a different thing.
 
-- A glossary term is the identifier for that concept: `Invoice`, not `Bill`. Words under `_Avoid_` are banned in code too.
-- Use the glossary of the context the code lives in. One word can mean different things in two contexts.
-- If the concept has no term yet, propose one and say so instead of inventing it silently. Recording it is the `domain-modeling` skill's job, if available.
-- If an ADR in `docs/adr/` explains why something has its name, follow it.
+- **Documented terms win.** Look for a glossary or domain doc (`GLOSSARY.md`, `CONTEXT.md`, a "Terminology" section in the README or CONTRIBUTING) and for decision records such as ADRs. If the glossary says `Invoice`, write `Invoice`, not `Bill`. Words it tells you to avoid are banned in code too.
+- **Without docs, the code is the vocabulary.** The names of existing types, database tables and API routes are the project's terms. If the code says `Customer`, don't introduce `Client`.
+- **Use the vocabulary of the area you're in.** One word can mean different things in two parts of a larger codebase, so a term from billing may not fit in shipping.
+- **If a concept has no term yet,** pick the clearest one, use it, and tell the user you introduced it so they can change it before it spreads. If the project keeps a glossary, suggest adding the term there.
 
 ## Second: the codebase's conventions
 
