@@ -8,6 +8,8 @@ Teaches Claude to name things so a reader can predict what a name holds or does 
 
 **One test behind every rule.** Every guideline comes back to one question: what will someone who sees only this name, at a use site, assume, and is that assumption right? When two guidelines conflict, or a case isn't covered, Claude applies the test and says which way it went.
 
+**The project's vocabulary comes first.** If the repo has a `GLOSSARY.md` (the format used by the [`domain-modeling`](https://github.com/mattpocock/skills) skill) or ADRs, Claude names domain concepts with the glossary's terms and treats its `_Avoid_` words as banned identifiers. When a concept has no term yet, it proposes one instead of inventing a name silently.
+
 **The repo wins.** Existing conventions beat the skill. Claude matches the local style and points out a conflict rather than renaming things unasked.
 
 **Renames show their reasoning.** Each rename comes with a one-line reason, for example "`cooldown` → `cooldownSeconds`: unit was missing", so you can push back on a rename you disagree with.
