@@ -16,14 +16,22 @@ Before naming a domain concept, look for `GLOSSARY.md` (or `GLOSSARY-MAP.md`, wh
 - If the concept has no term yet, propose one and say so instead of inventing it silently. Recording it is the `domain-modeling` skill's job, if available.
 - If an ADR in `docs/adr/` explains why something has its name, follow it.
 
-Then match the codebase's existing conventions, which beat this file. Point out a conflict instead of renaming unasked.
+## Second: the codebase's conventions
+
+The rules below are principles. *How* to spell them (which verb means what, which boolean prefix, unit suffix, word order) is convention, and the codebase's convention wins.
+
+- Before picking a spelling, look at a few existing names of the same kind near the code you're touching, e.g. `rg -o '\bget[A-Z]\w*'` to see what `get` does here.
+- If they agree, follow them, even where they differ from the defaults. If `async getUser()` is everywhere, `get` may do I/O in this repo.
+- If the local area disagrees with the rest of the repo, follow the area and mention it.
+- No existing names of that kind (a new repo, or the first boolean or API call)? Read [references/default-conventions.md](references/default-conventions.md) before choosing, so the codebase starts out consistent instead of inheriting whatever you'd pick by habit.
+- Point out a conflict instead of renaming unasked.
 
 ## 1. Put the unit in the name
 
 `cooldown: 3` could be seconds, frames or milliseconds, and the type is just `number`, so a mix-up compiles and is off by 60× or 1000×. With units, `delaySeconds = timeoutMillis` looks wrong at a glance.
 
-- `cooldownSeconds`, `reachPixels`, `angleRadians`; rates name both units: `speedPixelsPerSecond`.
-- Counts end in `Count`. Factors end in `Multiplier`, `Fraction` or `Ratio`, which also says whether 1 means "unchanged" or "all".
+- `cooldownSeconds`, `reachPixels`, `angleRadians`; rates name both units.
+- Counts and factors say so, and a factor says whether 1 means "unchanged" or "all".
 - Skip the unit when the type carries it (`time.Duration`, a branded `Seconds`, one unit everywhere in the codebase).
 
 ## 2. Say what it means
@@ -41,7 +49,7 @@ Then match the codebase's existing conventions, which beat this file. Point out 
 - **Single letters** only for a short loop index or maths that mirrors its formula.
 - **No numeric suffixes:** `missile1`/`missile2` hide why both exist. Name the difference: `leadMissile`, `wingMissile`.
 - **Constants name meaning, not value:** `HULL_MAX`, not `ONE_HUNDRED`.
-- **Qualifier first:** `minPosts`, `maxPosts`, `prevPosts`, `nextPosts`.
+- **Bounds and transitions** use the standard words `min`/`max`, `prev`/`next`, in one consistent order.
 - **About 4 words or 20 characters.** Longer usually means an object should supply the context: `power.cooldownSeconds`, not `megaBoostPowerCooldownSeconds`.
 
 ## 4. Names that look alike
@@ -55,9 +63,9 @@ Readers recognise names by shape and by their first and last letters. Two look-a
 
 - **No type encoding** (`strName`, `userList`): the editor shows the type, and the prefix goes stale. Carry meaning, role and unit instead.
 - **Singular for one, plural for a collection**; a collective noun when one exists (`fleet`, `queue`).
-- **Booleans read as statements:** `is` (state), `has` (holds), `can` (allowed), `should` (condition for an action). Never `status` or `mode` for a yes/no. Keep them positive (`visible`, not `notHidden`) unless every use negates.
+- **Booleans read as true/false statements** (`hasFuel`, `visible`). Never `status` or `mode` for a yes/no, which invites a third state. Keep them positive (`visible`, not `notHidden`) unless every use negates.
 - **Matched opposites:** `start`/`end`, `first`/`last`, `source`/`target`, never `first`/`end`.
-- **A discriminator field is `kind`** (or the repo's word), and its values are nouns.
+- **A discriminator field** uses one word repo-wide, and its values are nouns.
 
 ## 6. Types
 
@@ -66,23 +74,9 @@ Noun phrases (`DiscountRule`, not `Calculate`) that cover every value the type h
 ## 7. Functions
 
 - Verb phrases. A pure derivation may read as a noun: `traits(plane)`.
-- Shape: prefix + action + main context + detail (`getUserMessages`, `shouldDisplayMessage`). Order changes meaning: `shouldUpdateComponent` means you update it, `shouldComponentUpdate` means it updates itself.
+- Word order changes meaning: `shouldUpdateComponent` means you update it, `shouldComponentUpdate` means it updates itself.
 - Name the domain (`getRecentPosts(posts)`, not `filterRecent(list)`) unless the language implies it.
-- Each verb keeps one meaning repo-wide, so callers can predict cost and effect:
-
-| Verb | Means |
-|---|---|
-| `get` | cheap, no side effects (callers loop over it) |
-| `fetch` / `load` | does I/O or may be slow |
-| `set` / `reset` | assign / restore the initial value |
-| `add` / `remove` | into or out of a collection; the thing still exists |
-| `create` / `delete` | make exist / destroy |
-| `compose` / `build` | new data from existing data |
-| `handle` | event callback |
-| `validate` / `check` | returns the result or throws |
-| `toX` / `parseX` / `formatX` | returns the converted value |
-
-If the repo already writes `async getUser()`, follow it.
+- **Each verb keeps one meaning repo-wide**, so callers can predict cost and effect from the verb alone: whether `get` may do I/O, whether `remove` destroys or only detaches, whether `validate` throws. Learn the repo's meanings before adding a verb.
 
 ## Applying it
 
@@ -92,7 +86,8 @@ If the repo already writes `async getUser()`, follow it.
 
 ## References
 
-Open only when you need more detail:
+Open only when you need them:
 
+- [references/default-conventions.md](references/default-conventions.md): verb meanings, boolean prefixes, unit and count suffixes, case, for codebases with no convention of their own.
 - [references/hilton-hermans.md](references/hilton-hermans.md): all 40 of Hilton & Hermans' guidelines, with notes where this file departs from them.
 - [references/kettanaito-cheatsheet.md](references/kettanaito-cheatsheet.md): the full naming cheatsheet with examples.

@@ -10,7 +10,7 @@ Teaches Claude to name things so a reader can predict what a name holds or does 
 
 **The project's vocabulary comes first.** If the repo has a `GLOSSARY.md` (the format used by the [`domain-modeling`](https://github.com/mattpocock/skills) skill) or ADRs, Claude names domain concepts with the glossary's terms and treats its `_Avoid_` words as banned identifiers. When a concept has no term yet, it proposes one instead of inventing a name silently.
 
-**The repo wins.** Existing conventions beat the skill. Claude matches the local style and points out a conflict rather than renaming things unasked.
+**Principles are fixed; conventions are the repo's.** The skill holds only what's true in any codebase: units, meaning, look-alikes, one meaning per verb. *Which* verb means what, which boolean prefix and which unit suffix are conventions, so Claude reads the names already around the code and follows them, even when they differ from the skill's taste. Only in a codebase with no convention yet does it open the bundled [default conventions](references/default-conventions.md), so new code starts out consistent. It points out conflicts rather than renaming things unasked.
 
 **Renames show their reasoning.** Each rename comes with a one-line reason, for example "`cooldown` → `cooldownSeconds`: unit was missing", so you can push back on a rename you disagree with.
 
@@ -22,7 +22,7 @@ Teaches Claude to name things so a reader can predict what a name holds or does 
 | Meaning over placeholders | `data` → `unpaidInvoices`, no `Manager`/`Util` |
 | Look-alike names | `appleCount` next to `appleCounts` gets renamed |
 | Booleans | `hasFuel`, never `notHidden` or `status` for yes/no |
-| Verb meanings | `get` is cheap and pure, `fetch` does I/O, `remove` ≠ `delete` |
+| One meaning per verb | learns what `get` means *here*; defaults to `get` cheap, `fetch` I/O |
 | Types and functions | noun phrases for types, verb phrases for functions |
 
 ## Sources
