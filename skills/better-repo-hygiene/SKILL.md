@@ -29,6 +29,8 @@ Show the user the summary line and the `save` and `hold` rows before acting.
 
 ## 3. Save first
 
+Log every command you run, as one line in `<scratch>/ledger.tsv` with the repo, the item, the command and its outcome (`ok`, `failed: <error>`, `blocked`). Step 6 reports from this file, so log failures and skips too.
+
 - Run every `save` command. A stash becomes a `stash/N-date` branch, so push that branch too.
 - **Uncommitted work** edited more than 24 hours ago: commit it with `/x-commit` onto a new `rescue/<date>-<topic>` branch (never onto the default branch), then push it. Work edited in the last 24 hours may belong to a running session, so leave it alone and report it.
 - **Diverged branches and oversized ignored files**: report them with the files listed. Don't pick a side.
@@ -54,4 +56,15 @@ df -k /
 
 ## 6. Report
 
-Lead with the space freed. Then list what was saved and where it was pushed, where archives went, what was deleted (counts by kind), every `hold` with its reason, and any blocked commands.
+Report everything that happened, item by item, from the ledger. The user should never find a branch, archive or missing worktree they weren't told about. Group by repo, and include:
+
+- **Space freed.** Lead with the `--freed` total and the `df` change.
+- **Rescued work.** For each `rescue/` branch: the repo, the worktree or checkout it came from, the files it holds, the commit, and its GitHub URL.
+- **Pushed.** Each branch pushed and each stash turned into a branch, with its URL.
+- **Archived.** Each archive path, and the files in it.
+- **Removed.** Each worktree with its size, each branch deleted with the reason it was safe (on origin, merged PR, or patches in the default branch), and each stash dropped.
+- **Switched.** Any main checkout moved back to its default branch, and the branch it was on.
+- **Left alone.** Every `hold` and every skipped session worktree, with the reason.
+- **Failed or blocked.** Every command that failed, with its error. Then every blocked command in one copy-paste block.
+
+For a long list, put the per-item detail in a file and link it, but keep the counts and every rescued branch in the reply.

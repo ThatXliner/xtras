@@ -20,6 +20,8 @@ Cleans up the git mess that agent sessions leave behind, in one repo or every re
 
 **Blocked isn't stuck.** If a permission prompt or safety hook blocks a deletion, the agent carries on and hands you the blocked commands in one block at the end.
 
+**Nothing happens silently.** Every command goes in a ledger, and the report lists each item from it: rescue branches with their files and URLs, pushes, archives, removals with sizes and reasons, holds, failures and blocked commands.
+
 **Storage freed is measured.** `audit.mjs --freed before.json` totals the worktrees that are actually gone, and the report shows the `df` change alongside it.
 
 ## Tests
