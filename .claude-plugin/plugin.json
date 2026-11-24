@@ -1,7 +1,7 @@
 {
   "name": "xtras",
   "version": "2.1.0",
-  "description": "Extras for Claude Code — x-commit (gitmoji + conventional atomic commits), x-humanizer (de-AI-ify writing), better-tools (rg/fd/sd over POSIX tools) and x-names (identifier naming)",
+  "description": "Extras for Claude Code — x-commit (gitmoji + conventional atomic commits), x-humanizer (de-AI-ify writing), x-names (identifier naming), better-tools (rg/fd/sd over POSIX tools) and skill-token-compression (shrink skills without losing clarity)",
   "author": {
     "name": "ThatXliner"
   },

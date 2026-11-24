@@ -19,6 +19,12 @@ Faster or more correct than Claude's defaults, with nothing to disagree with.
 
 - **[better-tools](skills/better-tools/README.md)** — reach for `rg`, `fd`, `sd`, and `jq` instead of `grep`, `find`, and `sed`, with silent fallback when they aren't installed.
 
+### Other utilities
+
+Tools you run when you need them.
+
+- **[skill-token-compression](skills/skill-token-compression/README.md)** — cut a skill's token cost without turning its rules into riddles: measure by load level, cut material instead of sentences, and check the result on a fresh reader before shipping.
+
 ## Installation
 
 ```bash
