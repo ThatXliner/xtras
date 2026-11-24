@@ -60,7 +60,10 @@ function fixture() {
   mkdirSync(join(dir, "wt-pushed", "node_modules"));
   writeFileSync(join(dir, "wt-pushed", "node_modules", "x.js"), "");
   writeFileSync(join(dir, "wt-secret", ".env"), "TOKEN=only-here");
+  sh(repo, "switch", "-qc", "wt-only", "main");
+  commit(repo, "w.txt", "only in a worktree");
   sh(repo, "switch", "-q", "local-only");
+  sh(repo, "worktree", "add", "-q", join(dir, "wt-unpushed"), "wt-only");
   return repo;
 }
 
@@ -83,6 +86,8 @@ test("each leftover gets the verdict that keeps work safe", () => {
   assert.equal(verdict("branch:squashed"), "safe", "a branch whose patches are in main is safe");
   assert.equal(verdict("branch:diverged"), "hold", "a diverged branch is held, never force-pushed");
   assert.equal(verdict("branch:local-only"), "save", "an unpushed branch is pushed, not deleted");
+  assert.equal(verdict("worktree:wt-unpushed"), "hold", "a worktree with unpushed commits is held");
+  assert.equal(found["worktree:wt-unpushed"].rescuable, true, "pushing its branch would free it, so it counts toward the dry-run total");
   const stashes = Object.values(found).filter((f) => f.kind === "stash");
   assert.deepEqual(stashes.map((f) => f.name.slice(0, 9) + " " + f.verdict), ["stash@{1} safe", "stash@{0} save"], "applied stash is safe, lost stash is saved, highest index first");
   const main = Object.values(found).find((f) => f.kind === "main checkout");

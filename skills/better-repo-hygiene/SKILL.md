@@ -7,6 +7,10 @@ description: Audit and clean up git leftovers (uncommitted work, unpushed branch
 
 Delete only what is provably on GitHub. Push what isn't, and never force-push. Commit or report stray work, never discard it. Every deletion is a command the audit printed, not one you composed, because the audit is what proves it safe.
 
+## Dry run
+
+If the user asks for a dry run, or passes `--dry-run`, run steps 1 and 2 only. Don't run any `save` or `safe` command, and don't commit, push, archive or delete anything. Then report as in step 6, in the future tense: what would be rescued, pushed, archived, removed and left alone. Use the audit's summary line for space: what the safe set frees, and what saving first would free on top. End by saying the real run is the same request without `--dry-run`.
+
 ## 1. Scope and baseline
 
 - One repo: run from it, or pass its path. "All my projects": pass `~/Developer`, or the folder the user names.

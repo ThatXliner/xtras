@@ -23,6 +23,10 @@ Cleans up the git mess that agent sessions leave behind, in one repo or every re
 
 **Storage freed is measured.** `audit.mjs --freed before.json` totals the worktrees that are actually gone, and the report shows the `df` change alongside it.
 
+## Dry run
+
+Ask for a dry run, or run `/better-repo-hygiene --dry-run`, to see the full report before anything happens. It shows what would be rescued, pushed, archived and removed, and how much space that frees, without changing anything.
+
 ## Tests
 
 ```sh
