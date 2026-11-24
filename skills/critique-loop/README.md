@@ -27,17 +27,35 @@ Critics judge against **your** taste file at `~/.claude/critique-loop/taste.md`,
 
 ## Recipes
 
-Like Fujifilm film simulations, recipes are known looks you can start your taste file from, or name for a single piece ("critique it like Retention First"). Each one is distilled from a public source and credited; your own rules always win over a recipe's.
+Like Fujifilm film simulations, recipes are known looks, grouped by medium, that you can start your taste file from, or name for a single piece ("critique it like Retention First"). Each one is distilled from a public source and credited; your own rules always win over a recipe's.
+
+**Video and animation**
 
 | Recipe | Look | Built from |
 |---|---|---|
-| [Epic Indie](references/recipes/epic-indie.md) | big, acted-out, honest | my own taste file, from rejections of real work |
-| [Retention First](references/recipes/retention-first.md) | the thumbnail's promise, delivered fast | public reporting on MrBeast's guide "How to Succeed in MrBeast Production" ([Simon Willison](https://simonwillison.net/2024/Sep/15/how-to-succeed-in-mrbeast-production/), [Tubefilter](https://www.tubefilter.com/2024/09/17/mrbeast-internal-production-guide-leaked-key-points/)) |
-| [Bright Explainer](references/recipes/bright-explainer.md) | sourced ideas as bright visual metaphors | [Kurzgesagt's published process](https://kurzgesagt.org/youtube/) |
-| [Saturday Morning](references/recipes/saturday-morning.md) | classic character animation | the 12 principles from Frank Thomas and Ollie Johnston, *The Illusion of Life: Disney Animation* (1981) |
-| [No Default UI](references/recipes/no-default-ui.md) | a page only this product could have | Anthropic's [frontend-design](https://github.com/anthropics/skills/tree/main/skills/frontend-design), [taste-skill](https://github.com/Leonxlnx/taste-skill) (MIT), [agent-design-taste](https://github.com/aievolutionpl/agent-design-taste) (MIT), [tastemaker](https://github.com/Harrypatria/tastemaker) (MIT) |
-| [Quiet Motion](references/recipes/quiet-motion.md) | fast, purposeful UI motion | Emil Kowalski's [design-engineering skill](https://github.com/emilkowalski/skills) |
-| [Plain & Friendly](references/recipes/plain-and-friendly.md) | clear copy, dry humour, no hype | the [Mailchimp Content Style Guide](https://styleguide.mailchimp.com/voice-and-tone/) (CC BY-NC 4.0, © Mailchimp) and common lists of AI writing tells |
+| [Epic Indie](references/recipes/video/epic-indie.md) | big, acted-out, honest | my own taste file, from rejections of real work |
+| [Retention First](references/recipes/video/retention-first.md) | the thumbnail's promise, delivered fast | public reporting on MrBeast's guide "How to Succeed in MrBeast Production" ([Simon Willison](https://simonwillison.net/2024/Sep/15/how-to-succeed-in-mrbeast-production/), [Tubefilter](https://www.tubefilter.com/2024/09/17/mrbeast-internal-production-guide-leaked-key-points/)) |
+| [Bright Explainer](references/recipes/video/bright-explainer.md) | sourced ideas as bright visual metaphors | [Kurzgesagt's published process](https://kurzgesagt.org/youtube/) |
+| [Saturday Morning](references/recipes/video/saturday-morning.md) | classic character animation | the 12 principles from Frank Thomas and Ollie Johnston, *The Illusion of Life: Disney Animation* (1981) |
+
+**UI and web design**
+
+| Recipe | Look | Built from |
+|---|---|---|
+| [No Default UI](references/recipes/ui/no-default-ui.md) | one bold idea; a page only this product could have | Anthropic's [frontend-design](https://github.com/anthropics/skills/tree/main/skills/frontend-design), [taste-skill](https://github.com/Leonxlnx/taste-skill) (MIT), [agent-design-taste](https://github.com/aievolutionpl/agent-design-taste) (MIT), [tastemaker](https://github.com/Harrypatria/tastemaker) (MIT) |
+| [Swiss Grid](references/recipes/ui/swiss-grid.md) | rational grid, neutral type, white space | the International Typographic Style ([Wikipedia](https://en.wikipedia.org/wiki/International_Typographic_Style), [Smashing Magazine](https://www.smashingmagazine.com/2009/07/lessons-from-swiss-style-graphic-design/), [PRINT](https://www.printmag.com/featured/swiss-style-principles-typefaces-designers/)) |
+| [Apple Polish](references/recipes/ui/apple-polish.md) | quiet, physical, instantly responsive | Emil Kowalski's [apple-design skill](https://github.com/emilkowalski/skills), a web translation of Apple's WWDC design talks |
+| [Quiet Motion](references/recipes/ui/quiet-motion.md) | fast, purposeful UI motion | Emil Kowalski's [design-engineering skill](https://github.com/emilkowalski/skills) |
+
+**Copy and writing**
+
+| Recipe | Look | Built from |
+|---|---|---|
+| [Plain & Friendly](references/recipes/copy/plain-and-friendly.md) | clear, dry humour, no hype | the [Mailchimp Content Style Guide](https://styleguide.mailchimp.com/voice-and-tone/) (CC BY-NC 4.0, © Mailchimp) and common lists of AI writing tells |
+| [Interface Words](references/recipes/copy/interface-words.md) | short labels in the customer's words | 37signals' [*Getting Real*](https://basecamp.com/gettingreal/09.7-copywriting-is-interface-design) |
+| [Precise](references/recipes/copy/precise.md) | direct, calm, impossible to misread | the [Google developer documentation style guide](https://developers.google.com/style/highlights) |
+
+Images and sound have no recipes yet.
 
 Recipes are summaries in my own words, not written or endorsed by their sources. Send a PR with yours.
 

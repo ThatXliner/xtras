@@ -15,14 +15,14 @@ A critic with no reference judges against generic taste, which is how "competent
 
 - **References the user approved or named:** earlier pieces they liked, a creator they pointed at ("like Rick's Clips"), the project's best performer.
 - **The project's own rules:** a skill or doc for this pipeline (its checklist and "mistakes the critics caught" list), BRANDING.md, a style guide.
-- **The user's taste:** read `~/.claude/critique-loop/taste.md` (the user's own rules, in their words) and the project's `.claude/critique-loop/taste.md` if there is one. If the user has no taste file, read [references/establish-taste.md](references/establish-taste.md) and help them build one before round one. If no user is present (an automated run), judge against the references alone and say in the report that there's no taste file. If the user names a recipe for this piece ("critique it like Retention First"), also read it from [references/recipes/](references/recipes/); their own file wins where the two disagree. Without a taste file, critics fall back to generic taste, which is how "competent but bland" passes.
+- **The user's taste:** read `~/.claude/critique-loop/taste.md` (the user's own rules, in their words) and the project's `.claude/critique-loop/taste.md` if there is one. If the user has no taste file, read [references/establish-taste.md](references/establish-taste.md) and help them build one before round one. If no user is present (an automated run), judge against the references alone and say in the report that there's no taste file. If the user names a recipe for this piece ("critique it like Retention First"), also read it from [references/recipes/](references/recipes/) (one folder per medium); their own file wins where the two disagree. Without a taste file, critics fall back to generic taste, which is how "competent but bland" passes.
 - **Facts the work states or implies:** where the product is available, prices, dates, features, names. Critics check claims against these, so put the sources in the pack (README, store listing, release notes).
 
 ## 2. Build the evidence pack
 
 Critics can read text and look at images; they can't play a video or hear audio. Turn the work into things they can perceive, or they'll judge a still frame and miss that nothing moves.
 
-- **Video or animation:** run `node <this-skill>/scripts/pack.mjs <video> --ref <reference video>... --out <dir>`. It writes 5 fps frame strips (motion), a contact sheet (composition and variety), a spectrogram (audio texture), and prints frozen-frame share and loudness for the work and each reference. Add `--ignore-band 0.6,0.75` when burned-in captions would hide frozen art.
+- **Video or animation:** run `node <this-skill>/scripts/pack.mjs <video> --ref <reference video>... --out <dir>`. It writes 5 fps frame strips (motion), a contact sheet (composition and variety), a spectrogram (audio texture), and prints frozen-frame share and loudness for the work and each reference. Add `--ignore-band 0.6,0.75` when burned-in captions would hide frozen art. Include the thumbnail and title when the work has them; they're judged with it.
 - **Audio-only:** the same script gives the spectrogram and loudness numbers. Add the narration script or lyrics, and list the music tracks used in the project's recent pieces so a repeat is visible.
 - **Images, illustrations, UI:** screenshots at real display size, plus close crops of the focal detail. For UI, capture them the way the `show-me` skill does, in the real running app. For UI motion, a screen recording run through `pack.mjs`.
 - **Copy:** the text exactly as it will appear, with the facts file from step 1.
@@ -33,7 +33,7 @@ Set hard gates from the numbers where the project has them (for example, the Bil
 
 A round is one evidence pack judged by one pair of critics. Spawn two fresh subagents at the same time (Agent tool, the strongest model available at its highest effort, foreground). Pick a lens for each from [references/lenses.md](references/lenses.md), so they look for different things instead of agreeing with each other.
 
-Give each critic the pack, the brief, the bar from step 1 and the user's taste file. Tell them:
+Give each critic the pack, the brief, the bar from step 1, and the taste file's Everywhere section plus the sections for the work's mediums (a video with captions gets Video and Copy). A taste file without medium sections applies to everything. Tell them:
 
 - don't edit any files, and be blunt;
 - name every problem with a location (timestamp, strip, region, line);
