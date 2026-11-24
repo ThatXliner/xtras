@@ -1,7 +1,7 @@
 {
   "name": "xtras",
   "version": "1.1.0",
-  "description": "Extras for Claude Code — x-commit (gitmoji + conventional atomic commits) and x-humanizer (de-AI-ify writing)",
+  "description": "Extras for Claude Code — x-commit (gitmoji + conventional atomic commits), x-humanizer (de-AI-ify writing) and x-tools (rg/fd/sd over POSIX tools)",
   "author": {
     "name": "ThatXliner"
   },
