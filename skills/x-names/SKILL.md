@@ -1,6 +1,6 @@
 ---
 name: x-names
-description: Name variables, constants, fields, types and functions so a reader can predict what they hold from the use site alone. Use when choosing or reviewing identifier names, designing a config or data shape, renaming during a refactor, or when a name is vague, off-glossary or missing units.
+description: Name variables, constants, fields, types and functions so a reader can predict what they hold from the use site alone. Use when choosing or reviewing identifier names, designing a config or data shape, renaming during a refactor, or when a name is vague, off-glossary or missing units. Also use when writing new code that introduces types, fields or config, even if the user doesn't mention naming.
 ---
 
 # Naming identifiers
@@ -18,76 +18,80 @@ Before naming a domain concept, look for `GLOSSARY.md` (or `GLOSSARY-MAP.md`, wh
 
 ## Second: the codebase's conventions
 
-The rules below are principles. *How* to spell them (which verb means what, which boolean prefix, unit suffix, word order) is convention, and the codebase's convention wins.
+The numbered sections below say what a name has to communicate. The exact spelling is convention: which verb signals I/O, whether booleans start with `is`, `Seconds` or `Secs`, `minPosts` or `postsMin`. Readers predict from the conventions they've already seen in this codebase, so those win over this file and over its defaults.
 
-- Before picking a spelling, look at a few existing names of the same kind near the code you're touching, e.g. `rg -o '\bget[A-Z]\w*'` to see what `get` does here.
-- If they agree, follow them, even where they differ from the defaults. If `async getUser()` is everywhere, `get` may do I/O in this repo.
-- If the local area disagrees with the rest of the repo, follow the area and mention it.
-- No existing names of that kind (a new repo, or the first boolean or API call)? Read [references/default-conventions.md](references/default-conventions.md) before choosing, so the codebase starts out consistent instead of inheriting whatever you'd pick by habit.
-- Point out a conflict instead of renaming unasked.
+- Before choosing a spelling, look at a few existing names of the same kind near the code you're touching. For example, `rg -o '\bget[A-Z]\w*'` shows what `get` does in this repo.
+- If they agree, follow them, even where they differ from the defaults. If every `getUser()` is `async` and hits the network, then `get` does I/O in this repo, and a new loader should be `getPlan()`, not `fetchPlan()`.
+- If the local area disagrees with the rest of the repo, follow the area and mention the inconsistency.
+- If there are no existing names of that kind (a new repo, or the first boolean or API call), read [references/default-conventions.md](references/default-conventions.md) before choosing. Then the codebase starts out consistent, instead of inheriting whatever you'd pick by habit.
+- Point out a conflict instead of renaming existing code unasked.
 
 ## 1. Put the unit in the name
 
-`cooldown: 3` could be seconds, frames or milliseconds, and the type is just `number`, so a mix-up compiles and is off by 60× or 1000×. With units, `delaySeconds = timeoutMillis` looks wrong at a glance.
+`cooldown: 3` could be 3 seconds, 3 frames or 3 milliseconds. The type is just `number`, so a mix-up compiles and runs, and the value is off by 60× or 1000×. With the unit in the name, `delaySeconds = timeoutMillis` looks wrong at a glance.
 
-- `cooldownSeconds`, `reachPixels`, `angleRadians`; rates name both units.
-- Counts and factors say so, and a factor says whether 1 means "unchanged" or "all".
-- Skip the unit when the type carries it (`time.Duration`, a branded `Seconds`, one unit everywhere in the codebase).
+- Quantities carry their unit: `cooldownSeconds`, `reachPixels`, `angleRadians`. A rate names both units: `speedPixelsPerSecond`.
+- When a number isn't a quantity, say what it is instead. A count says it's a count (`bombletCount`, not `bomblets`). A factor says it's a factor, and how to read it: `turnMultiplier` (1 means unchanged) and `healthFraction` (1 means all of it) look alike as numbers but mean different things.
+- Skip the unit when the type already carries it: a Go `time.Duration`, a branded `Seconds` type, or a codebase that uses one unit everywhere. There the compiler or the convention catches the mix-up, and the suffix is only noise.
 
 ## 2. Say what it means
 
-- **No placeholders** (`data`, `temp`, `info`, `value`, `flag`): everything is data, so they predict nothing.
-- **No catch-alls** (`Manager`, `Helper`, `Util`, `process`): readers guess anything, and the thing grows to fill the name. `handle` for event callbacks is fine.
-- **Don't repeat context:** `MenuItem.handleClick`, not `MenuItem.handleMenuItemClick`.
-- **Name for how it's used:** if every use is `!isEnabled`, name it `isDisabled`.
-- **One word per concept** in each area (not jet/plane/craft). Readers assume different words mean different things. Never two names for one thing, and worse, one name for two.
-- **The exact word over a phrase** (`Employee`, not `CompanyPerson`). No jokes, non-English or invented words (`isPaginatable` → `hasPagination`).
+- **No placeholders** (`data`, `temp`, `info`, `value`, `flag`). Every variable holds data, so the name tells the reader nothing.
+- **No catch-all words** (`Manager`, `Helper`, `Util`, `process`). Readers can't tell what the thing does, and because anything fits under the name, it grows to do everything. `handle` for an event callback is the exception: it has one settled meaning.
+- **Don't repeat the context.** Inside `MenuItem`, write `handleClick`, not `handleMenuItemClick`. The reader already sees `MenuItem`.
+- **Name it for how it's used.** If every use is `disabled={!isEnabled}`, readers negate it in their heads each time. Name it `isDisabled`.
+- **One word per concept.** If the code says "plane" in one file and "jet" in another, readers assume they're different things and go looking for the difference. Two names for one thing causes that confusion. One name for two different things is worse, because the reader's guess is right in one place and wrong in the other.
+- **Use the exact word.** `Employee`, not `CompanyPerson`.
+- **No jokes, non-English or invented words.** Each costs readers a translation step, and some readers can't make it. Write `hasPagination`, not `isPaginatable`. Established project terms are the exception: if the domain's own word is non-English, the project's vocabulary wins.
 
 ## 3. Spelling and shape
 
-- **Whole words.** An abbreviation is a lookup and breaks search (`btn`/`bttn`/`button`). Keep `id`, `url`, `min`, `max` and documented domain terms.
-- **Single letters** only for a short loop index or maths that mirrors its formula.
-- **No numeric suffixes:** `missile1`/`missile2` hide why both exist. Name the difference: `leadMissile`, `wingMissile`.
-- **Constants name meaning, not value:** `HULL_MAX`, not `ONE_HUNDRED`.
-- **Bounds and transitions** use the standard words `min`/`max`, `prev`/`next`, in one consistent order.
-- **About 4 words or 20 characters.** Longer usually means an object should supply the context: `power.cooldownSeconds`, not `megaBoostPowerCooldownSeconds`.
+- **Whole words.** An abbreviation is a lookup for the reader, and it breaks search when people spell it differently (`btn`, `bttn`, `button`). Keep the ones everyone reads instantly (`id`, `url`, `min`, `max`) and documented domain terms.
+- **Single letters** only for a short loop index, or in maths that mirrors a known formula (`x`, `y`, `t`).
+- **No numeric suffixes.** `missile1` and `missile2` say there are two but not why. Name the difference: `leadMissile`, `wingMissile`.
+- **Constants name the meaning, not the value.** `HULL_MAX`, not `ONE_HUNDRED`, which becomes a lie when the value changes.
+- **Bounds and transitions** use the standard words `min`/`max` and `prev`/`next`. Pick one word order (`minPosts` or `postsMin`) and keep it everywhere.
+- **About 4 words or 20 characters.** Longer names wrap and get skimmed. A name that needs more words usually belongs inside an object that supplies the context: `power.cooldownSeconds`, not `megaBoostPowerCooldownSeconds`.
 
 ## 4. Names that look alike
 
-Readers recognise names by shape and by their first and last letters. Two look-alike names of the same type in one scope get swapped, and nothing complains.
+Readers recognise names by their shape and their first and last letters rather than reading every character. If two names in one scope look alike and have the same type, a reader or autocomplete can swap them, and nothing complains because both are valid.
 
-- Don't let same-type names differ by one or two letters (`itemTotal`/`itemsTotal`, both numbers: one line's total and the cart's), by word order (`startTime`/`timeStart`), or only in sound (`wrap`/`rap`). Rename for the role: `lineTotal`, `cartTotal`.
-- Different types are fine, because the type checker catches a swap: `for (const missile of missiles)` is one missile and a list of them.
+- Don't let same-type names differ by only one or two letters. In a shopping cart, `itemTotal` (one item's price times its quantity) and `itemsTotal` (the sum for the whole cart) are both numbers, and a typo between them silently uses the wrong one. Name each for its role instead: `itemTotal` and `cartTotal`.
+- The same goes for names that differ only in word order (`startTime` and `timeStart`) or only in sound (`wrap` and `rap`, which are ambiguous when code is discussed aloud).
+- Look-alikes of different types are fine, because the type checker catches a swap. In `for (const missile of missiles)`, one is a missile and the other is a list, and mixing them up won't compile.
 
 ## 5. Values
 
-- **No type encoding** (`strName`, `userList`): the editor shows the type, and the prefix goes stale. Carry meaning, role and unit instead.
-- **Singular for one, plural for a collection**; a collective noun when one exists (`fleet`, `queue`).
-- **Booleans read as true/false statements** (`hasFuel`, `visible`). Never `status` or `mode` for a yes/no, which invites a third state. Keep them positive (`visible`, not `notHidden`) unless every use negates.
-- **Matched opposites:** `start`/`end`, `first`/`last`, `source`/`target`, never `first`/`end`.
-- **A discriminator field** uses one word repo-wide, and its values are nouns.
+- **No type in the name** (`strName`, `userList`). The editor already shows the type, and the prefix goes stale when the type changes. Spend the characters on meaning, role and unit.
+- **Singular for one value, plural for a collection** (`missile`, `missiles`). Readers decide from the name whether to write `.length` or `.x`. Use a collective noun when one exists (`fleet`, `queue`), since it also says what the collection is for.
+- **Booleans read as a true/false statement**: `hasFuel`, `isVisible`, or a plain `visible`. Don't use `status` or `mode` for a yes/no, since it hides that there are only two states and invites a third.
+- **Booleans don't contain a negation.** `if (!notHidden)` is a double negative, and readers get those wrong, so write `visible` instead of `notHidden` or `isNotEnabled`. A word that is itself a state, like `disabled` or `hidden`, isn't a negation: pick whichever of the pair most uses check, as in "Name it for how it's used".
+- **Opposites come in matched pairs**: `start`/`end`, `first`/`last`, `source`/`target`. Seeing one, readers predict the other. A mismatched pair like `first`/`end` makes them wonder whether the two are related.
+- **Tagged unions:** the field that says which variant a value is (`kind`, `type`, `variant`) uses the same word everywhere in the repo, and its values are nouns: `{ kind: "circle" }`, not `{ kind: "isCircle" }`.
 
 ## 6. Types
 
-Noun phrases (`DiscountRule`, not `Calculate`) that cover every value the type holds (`ControlState`, not `ControlEnableState`).
+- **Noun phrases.** A type is something values are, so `const rule: DiscountRule` reads correctly and `const rule: Calculate` doesn't.
+- **The name covers every value the type can hold.** A type called `ControlEnableState` that also represents "disabled" makes readers assume it means enabled. Call it `ControlState`.
 
 ## 7. Functions
 
-- Verb phrases. A pure derivation may read as a noun: `traits(plane)`.
-- Word order changes meaning: `shouldUpdateComponent` means you update it, `shouldComponentUpdate` means it updates itself.
-- Name the domain (`getRecentPosts(posts)`, not `filterRecent(list)`) unless the language implies it.
-- **Each verb keeps one meaning repo-wide**, so callers can predict cost and effect from the verb alone: whether `get` may do I/O, whether `remove` destroys or only detaches, whether `validate` throws. Learn the repo's meanings before adding a verb.
+- **Verb phrases** (`calculateDiscount()`), because a call does something. A pure function that only derives a value may read as a noun: `traits(plane)`.
+- **Word order changes meaning.** `shouldUpdateComponent` means you are about to update the component. `shouldComponentUpdate` means the component updates itself.
+- **Name the data it works on**: `getRecentPosts(posts)`, not `filterRecent(list)`, so readers know what it expects. Skip it when the language already says it: an array's `filter` doesn't need to be `filterArray`.
+- **Each verb keeps one meaning across the repo**, so callers can predict a call's cost and effect from the verb alone: whether `get` may do I/O, whether `remove` destroys the thing or only takes it off a list, whether `validate` throws. Learn the repo's meanings before adding a verb, and use the defaults file when there are none.
 
 ## Applying it
 
-- **Data shapes:** write the fields out with example values and read them aloud ("a cooldown of 8 seconds, a reach of 140 pixels, 6 bomblets"). A bare number, or a field that needs a comment, is missing information.
-- **Every rename gets a one-phrase reason**, such as "`cooldown` → `cooldownSeconds`: unit was missing", so the user can push back.
-- **Refactor renames** cover every use in one change (server, tools, docs) with identical behaviour. A half-done rename leaves two names for one thing.
+- **Designing a data shape:** write the fields out with example values and read them aloud: "a cooldown of 8 seconds, a reach of 140 pixels, 6 bomblets". A field that reads as a bare number, or needs a comment to explain it, is missing information.
+- **Every rename gets a one-phrase reason** in your reply (and in the commit message, if you commit), such as "`cooldown` → `cooldownSeconds`: unit was missing" or "`data` → `unpaidInvoices`: says what the list holds". That shows the reasoning, and the user can push back on a rename they disagree with.
+- **Renames in a refactor** cover every use in the same commit, including the server, tools and docs, and leave behaviour identical. A half-finished rename leaves two names for one thing.
 
 ## References
 
-Open only when you need them:
+Open these only when you need them:
 
-- [references/default-conventions.md](references/default-conventions.md): verb meanings, boolean prefixes, unit and count suffixes, case, for codebases with no convention of their own.
+- [references/default-conventions.md](references/default-conventions.md): verb meanings, boolean prefixes, unit and count suffixes and letter case, for codebases with no convention of their own.
 - [references/hilton-hermans.md](references/hilton-hermans.md): all 40 of Hilton & Hermans' guidelines, with notes where this file departs from them.
-- [references/kettanaito-cheatsheet.md](references/kettanaito-cheatsheet.md): the full naming cheatsheet with examples.
+- [references/kettanaito-cheatsheet.md](references/kettanaito-cheatsheet.md): the full naming cheatsheet with more examples.
