@@ -26,6 +26,14 @@ Needs `ffmpeg` and `ffprobe`. `--ignore-band` skips a horizontal band when measu
 
 [`references/taste.md`](references/taste.md) is the bar critics judge against, taken from my own rejections. Replace it with yours.
 
+## Sources
+
+- Madaan et al., ["Self-Refine: Iterative Refinement with Self-Feedback"](https://arxiv.org/abs/2303.17651) (2023): output improves when it is critiqued and revised over several rounds.
+- Huang et al., ["Large Language Models Cannot Self-Correct Reasoning Yet"](https://arxiv.org/abs/2310.01798) (2023): a model critiquing its own work without outside feedback often doesn't improve it, which is why the critics here are separate agents that didn't make the work.
+- The critique step in the Billion video pipeline (`gen-vid/references/critique.md`), which this generalises.
+
+Closest existing skill: pstack's `arena`, which generates several candidates and has them judged against each other. critique-loop improves one piece through rounds of fresh critics instead.
+
 ## Origin
 
 Generalised from the critique step in the Billion video pipeline, which came from six critic rounds on real episodes. Its first test run, on a finished Billion short, caught a factual error the script implied (a 60-day effective date presented as two years), a silent voice-provider fallback, and a retired visual style, all with timestamps.
