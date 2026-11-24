@@ -2,7 +2,6 @@
 
 **Look:** carefully sourced ideas turned into one visual metaphor per scene, in bright flat illustration with a score made for the piece.
 **Good for:** science and civic explainers, educational shorts, product explainers.
-**Source:** distilled from Kurzgesagt's published description of their process ([kurzgesagt.org/youtube](https://kurzgesagt.org/youtube/)). Not endorsed by them.
 
 ## Truth first
 

@@ -2,7 +2,6 @@
 
 **Look:** a page that could only belong to this product. Every choice is deliberate; nothing is there because it's what an AI or a template does by default.
 **Good for:** landing pages, marketing sites, app screens, UI mockups.
-**Source:** distilled from Anthropic's [frontend-design skill](https://github.com/anthropics/skills/tree/main/skills/frontend-design), [taste-skill](https://github.com/Leonxlnx/taste-skill) (MIT), [agent-design-taste](https://github.com/aievolutionpl/agent-design-taste) (MIT) and [tastemaker](https://github.com/Harrypatria/tastemaker) (MIT). Not endorsed by them.
 
 ## The test
 

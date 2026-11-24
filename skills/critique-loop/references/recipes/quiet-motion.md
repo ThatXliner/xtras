@@ -2,7 +2,6 @@
 
 **Look:** UI motion you feel rather than watch: fast, purposeful, and gone before it gets in the way.
 **Good for:** product UI, interactions, transitions, component animation.
-**Source:** distilled from Emil Kowalski's [design engineering skill](https://github.com/emilkowalski/skills). Not endorsed by him.
 
 ## Whether to animate
 
