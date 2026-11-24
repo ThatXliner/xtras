@@ -1,6 +1,6 @@
-# Taste: what this user has rejected
+# Example taste file
 
-This is the default bar, taken from the xtras author's own feedback on creative work. If you use this skill for someone else, replace this file with their rejections. Each rule is phrased as what to catch, with the reaction it came from.
+This is one person's taste file (the xtras author's), kept as an example of the format: each rule says what to catch, quotes the reaction it came from, and says why. It is **not** a default bar. Critics judge against the user's own file; see [establish-taste.md](establish-taste.md).
 
 ## Ambition
 

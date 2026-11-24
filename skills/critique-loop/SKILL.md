@@ -15,7 +15,7 @@ A critic with no reference judges against generic taste, which is how "competent
 
 - **References the user approved or named:** earlier pieces they liked, a creator they pointed at ("like Rick's Clips"), the project's best performer.
 - **The project's own rules:** a skill or doc for this pipeline (its checklist and "mistakes the critics caught" list), BRANDING.md, a style guide.
-- **The user's taste:** read [references/taste.md](references/taste.md). It lists what this user has rejected before and why.
+- **The user's taste:** read `~/.claude/critique-loop/taste.md` (the user's own rules, in their words) and the project's `.claude/critique-loop/taste.md` if there is one. If the user has no taste file, read [references/establish-taste.md](references/establish-taste.md) and help them build one before round one. If no user is present (an automated run), judge against the references alone and say in the report that there's no taste file. Without a taste file, critics fall back to generic taste, which is how "competent but bland" passes.
 - **Facts the work states or implies:** where the product is available, prices, dates, features, names. Critics check claims against these, so put the sources in the pack (README, store listing, release notes).
 
 ## 2. Build the evidence pack
@@ -33,7 +33,7 @@ Set hard gates from the numbers where the project has them (for example, the Bil
 
 A round is one evidence pack judged by one pair of critics. Spawn two fresh subagents at the same time (Agent tool, the strongest model available at its highest effort, foreground). Pick a lens for each from [references/lenses.md](references/lenses.md), so they look for different things instead of agreeing with each other.
 
-Give each critic the pack, the brief, the bar from step 1 and taste.md. Tell them:
+Give each critic the pack, the brief, the bar from step 1 and the user's taste file. Tell them:
 
 - don't edit any files, and be blunt;
 - name every problem with a location (timestamp, strip, region, line);
@@ -52,6 +52,8 @@ The work passes when both critics pass and every hard gate holds.
 
 If round three still fails, fix the blockers it named, then ship anyway: show the work to the user, or, if a pipeline called this skill, let it continue to publishing. More rounds cost more than they recover, and recurring output can't miss its slot. Say clearly what's still open.
 
-## 6. Report
+## 6. Learn and report
 
-Tell the user, briefly: how many rounds ran, what the critics caught and what changed, the hard-gate numbers against the reference, and anything still open with the critic's location for it. Show the final work alongside, not a description of it.
+When the user later rejects or corrects the work, add the rule to their taste file in their own words and tell them you did, so the next critique catches it before they have to.
+
+Then tell the user, briefly: how many rounds ran, what the critics caught and what changed, the hard-gate numbers against the reference, and anything still open with the critic's location for it. Show the final work alongside, not a description of it.

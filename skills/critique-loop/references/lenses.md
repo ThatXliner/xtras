@@ -2,7 +2,7 @@
 
 Give the two critics different lenses so they cover different ground. For each medium, pick the pair below; when a piece mixes media (a video with narration and on-screen copy), pick the two lenses where it's most likely to fail, and fold the truth check into one of them.
 
-Every critic, whatever its lens, also checks the work against taste.md and the references.
+Every critic, whatever its lens, also checks the work against the user's taste file and the references.
 
 ## Video, animation, trailers
 
