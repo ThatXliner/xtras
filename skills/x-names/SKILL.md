@@ -56,8 +56,8 @@ The rules below are principles. *How* to spell them (which verb means what, whic
 
 Readers recognise names by shape and by their first and last letters. Two look-alike names of the same type in one scope get swapped, and nothing complains.
 
-- Don't let names differ by one or two letters (`appleCount`/`appleCounts`), by word order (`countApple`), or only in sound (`wrap`/`rap`). Rename one for its role: `basketCount`, `orchardCount`.
-- It's fine when the type checker catches a swap: `for (const missile of missiles)`.
+- Don't let same-type names differ by one or two letters (`itemTotal`/`itemsTotal`, both numbers: one line's total and the cart's), by word order (`startTime`/`timeStart`), or only in sound (`wrap`/`rap`). Rename for the role: `lineTotal`, `cartTotal`.
+- Different types are fine, because the type checker catches a swap: `for (const missile of missiles)` is one missile and a list of them.
 
 ## 5. Values
 

@@ -25,7 +25,7 @@ From Peter Hilton and Felienne Hermans, "Naming Guidelines for Professional Prog
 16. **Use standard language.** Bad: `whack` for `kill`.
 17. **Use a large vocabulary.** `CompanyPerson` → `Employee`.
 18. **Use problem domain terms,** one per concept in each bounded context. Bad: `Order` when you mean `Shipment`.
-19. **Differ by more than one or two letters.** Bad: `appleCount` / `appleCounts`.
+19. **Differ by more than one or two letters.** Bad: `appleCount` / `appleCounts`. (SKILL.md uses `itemTotal` / `itemsTotal`, since the source's pair reads as one-vs-many, which is fine when the types differ.)
 20. **Differ by more than word order.** Bad: `appleCount` / `countApple`.
 21. **Differ in meaning.** Bad: `input` / `inputValue`, `recordCount` / `numberOfRecords`.
 22. **Differ phonetically.** Bad: `wrap` / `rap`.

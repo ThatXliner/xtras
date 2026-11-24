@@ -20,7 +20,7 @@ Teaches Claude to name things so a reader can predict what a name holds or does 
 |---|---|
 | Units in names | `reach: 140` → `reachPixels: 140` |
 | Meaning over placeholders | `data` → `unpaidInvoices`, no `Manager`/`Util` |
-| Look-alike names | `appleCount` next to `appleCounts` gets renamed |
+| Look-alike names | `itemTotal` next to `itemsTotal` (both numbers) gets renamed |
 | Booleans | `hasFuel`, never `notHidden` or `status` for yes/no |
 | One meaning per verb | learns what `get` means *here*; defaults to `get` cheap, `fetch` I/O |
 | Types and functions | noun phrases for types, verb phrases for functions |
