@@ -3,7 +3,7 @@
 
 Part of the [**xtras**](../../README.md) plugin.
 
-Cleans up the git mess that agent sessions leave behind, in one repo or every repo in `~/Developer`: dirty checkouts, unpushed branches, forgotten stashes, stale worktrees, and a main checkout stuck on some feature branch. Nothing is deleted unless it's provably on GitHub, nothing is force-pushed, and at the end it tells you how much disk it gave back.
+Cleans up the git mess that agent sessions leave behind, in one repo or every repo in your projects folder: dirty checkouts, unpushed branches, forgotten stashes, stale worktrees, and a main checkout stuck on some feature branch. Nothing is deleted unless it's provably on GitHub, nothing is force-pushed, and at the end it tells you how much disk it gave back.
 
 ## How it works
 

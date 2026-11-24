@@ -13,7 +13,8 @@ If the user asks for a dry run, or passes `--dry-run`, run steps 1 and 2 only. D
 
 ## 1. Scope and baseline
 
-- One repo: run from it, or pass its path. "All my projects": pass `~/Developer`, or the folder the user names.
+- One repo: run from it, or pass its path.
+- "All my projects": use the folder the user names. If they name none, use the folder that holds the current repo, as long as it holds other repos too. Otherwise pass every one of `~/Developer`, `~/code`, `~/src`, `~/projects`, `~/dev`, `~/repos`, `~/workspace` and `~/git` that exists. Tell the user which folders you scanned.
 - Record free space with `df -k /` before touching anything.
 
 ## 2. Audit
