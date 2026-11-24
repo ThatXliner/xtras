@@ -8,7 +8,7 @@ Gets creative work (video, animation, art, UI visuals, sound, marketing copy) pa
 
 ## How it works
 
-1. **Set the bar:** references you liked or named, the project's own rules and "mistakes the critics caught" list, your [taste](references/taste.md), and the facts the work claims.
+1. **Set the bar:** references you liked or named, the project's own rules and "mistakes the critics caught" list, your taste file (built with you the first time), and the facts the work claims.
 2. **Build an evidence pack** critics can perceive. They can't play video or hear audio, so [`scripts/pack.mjs`](scripts/pack.mjs) turns a video into 5 fps frame strips (motion), a contact sheet (composition), a spectrogram (sound), and numbers: frozen-frame share and loudness, side by side with the references.
 3. **Two critics in parallel** at high effort, each with a different [lens](references/lenses.md) for the medium, each ending PASS or FAIL with located, ranked fixes.
 4. **Fix and repeat with fresh critics.** New agents each round, because a critic anchors on its own earlier verdict. Fixes that would help every future piece go into the shared kit, and the lesson goes into the project's mistakes list.
@@ -24,7 +24,9 @@ Needs `ffmpeg` and `ffprobe`. `--ignore-band` skips a horizontal band when measu
 
 ## Your taste, not mine
 
-[`references/taste.md`](references/taste.md) is the bar critics judge against, taken from my own rejections. Replace it with yours.
+Critics judge against **your** taste file at `~/.claude/critique-loop/taste.md`, plus an optional per-project one at `.claude/critique-loop/taste.md`. If you don't have one, the skill helps you build it the first time: it gathers what you've already said (CLAUDE.md, memory, this conversation), asks you to pick between contrasting directions, and asks which common failures you hate, then shows you the file. After that it grows by itself: every time you reject something, the rule is added in your words. Automated runs with nobody to ask fall back to your references and say so.
+
+[`references/example-taste.md`](references/example-taste.md) is mine, as an example of the format.
 
 ## Sources
 
