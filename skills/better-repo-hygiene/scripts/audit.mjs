@@ -189,6 +189,7 @@ function auditRepo(repo) {
         verdict: "hold",
         reason: `${status.length} uncommitted path(s)${recent ? ", edited in the last 24h (a session may be using it)" : ""}`,
         recent,
+        rescuable: !main && !recent && !wt.locked,
         files: status.slice(0, 10),
         kb,
       });
@@ -211,7 +212,7 @@ function auditRepo(repo) {
     }
     const where = onRemote(repo, wt.head, trunk, prs);
     if (!where) {
-      add({ kind: label, name: wt.path, verdict: "hold", reason: `${wt.branch ?? "detached HEAD"} has commits not on GitHub; save the branch first`, kb });
+      add({ kind: label, name: wt.path, branch: wt.branch, verdict: "hold", reason: `${wt.branch ?? "detached HEAD"} has commits not on GitHub; save the branch first`, kb });
       continue;
     }
     const ignored = unrecoverableIgnored(wt.path, worktrees[0].path);
@@ -276,6 +277,10 @@ function auditRepo(repo) {
         cmd: `git -C ${q(repo)} stash branch stash/${ref.replace(/\D/g, "")}-$(date +%Y%m%d) ${ref}`,
       });
   }
+  // A worktree held only for unpushed commits frees up once its branch is pushed.
+  for (const f of findings.filter((x) => x.branch && x.verdict === "hold" && !x.recent)) {
+    f.rescuable = findings.some((b) => b.kind === "branch" && b.name === f.branch && b.verdict === "save");
+  }
   if (fetchFailed) {
     // Stale origin refs can make unpushed work look pushed, so nothing here is proven safe.
     for (const f of findings.filter((x) => x.verdict === "safe")) {
@@ -313,5 +318,6 @@ if (json) {
   }
   const count = (v) => findings.filter((f) => f.verdict === v).length;
   const freeKb = findings.filter((f) => f.verdict === "safe").reduce((n, f) => n + (f.kb ?? 0), 0);
-  console.log(`\n${count("safe")} safe, ${count("save")} to save, ${count("hold")} on hold; removing the safe worktrees frees about ${gb(freeKb)} GB`);
+  const rescueKb = findings.filter((f) => f.verdict === "hold" && f.rescuable).reduce((n, f) => n + (f.kb ?? 0), 0);
+  console.log(`\n${count("safe")} safe, ${count("save")} to save, ${count("hold")} on hold; removing the safe worktrees frees about ${gb(freeKb)} GB, and saving held work first frees another ${gb(rescueKb)} GB`);
 }
