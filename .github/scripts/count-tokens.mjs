@@ -1,4 +1,4 @@
-// Count tokens in every skills/*/SKILL.md and write one shields.io endpoint
+// Count tokens in every opinionated skill (skills/x-*/SKILL.md) and write one shields.io endpoint
 // badge per skill, plus a Markdown summary for the PR comment.
 //
 // Usage: node .github/scripts/count-tokens.mjs <out-dir>
@@ -19,7 +19,7 @@ mkdirSync(outDir, { recursive: true });
 
 const encoding = encoding_for_model("gpt-5");
 const skillNames = readdirSync("skills")
-    .filter((name) => existsSync(join("skills", name, "SKILL.md")))
+    .filter((name) => name.startsWith("x-") && existsSync(join("skills", name, "SKILL.md")))
     .sort();
 
 // Same scale the badges have always used: green at 0 tokens, red at 3000+.
