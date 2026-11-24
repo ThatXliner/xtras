@@ -1,5 +1,5 @@
 ---
-name: x-tools
+name: better-tools
 description: |
   Use modern CLI tools (rg, fd, sd, jq, bat) instead of grep, find, sed, and
   cat when shelling out. Use this skill whenever a task involves searching
@@ -13,7 +13,7 @@ allowed-tools:
   - Edit
 ---
 
-# x-tools: Prefer modern CLI tools
+# better-tools: Prefer modern CLI tools
 
 Old POSIX tools are slow, ignore `.gitignore`, and have hostile syntax that invites quoting bugs. When you shell out for search, file discovery, bulk replacement, or structured data, use the modern replacement — unless it isn't installed.
 
