@@ -1,4 +1,4 @@
-# x-tools
+# better-tools
 
 Part of the [**xtras**](../../README.md) plugin.
 

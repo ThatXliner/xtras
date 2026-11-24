@@ -7,7 +7,7 @@
 
 - **[x-commit](skills/x-commit/README.md)** — commit the way I want, not the way Claude defaults to: gitmoji + conventional commits, atomic enforcement, why-not-what messaging.
 - **[x-humanizer](skills/x-humanizer/README.md)** — strip the AI tells out of generated prose by fixing rhythm and sentence mechanics.
-- **[x-tools](skills/x-tools/README.md)** — reach for `rg`, `fd`, `sd`, and `jq` instead of `grep`, `find`, and `sed`, with silent fallback when they aren't installed.
+- **[better-tools](skills/better-tools/README.md)** — reach for `rg`, `fd`, `sd`, and `jq` instead of `grep`, `find`, and `sed`, with silent fallback when they aren't installed.
 - **[x-names](skills/x-names/README.md)** — name variables, fields, types and functions so the call site alone tells the reader what they hold: units in names, no `data`/`Manager`, verbs that keep one meaning.
 
 ## Installation
