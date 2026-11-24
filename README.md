@@ -7,6 +7,7 @@
 [![Skill-token-compression Tokens](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2FThatXliner%2Fcffd977aeb3539c0571ee27356d3a0b3%2Fraw%2Fskill-token-compression-tokens.json)](skills/skill-token-compression/README.md)
 [![Show-me Tokens](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2FThatXliner%2Fcffd977aeb3539c0571ee27356d3a0b3%2Fraw%2Fshow-me-tokens.json)](skills/show-me/README.md)
 [![Critique-loop Tokens](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2FThatXliner%2Fcffd977aeb3539c0571ee27356d3a0b3%2Fraw%2Fcritique-loop-tokens.json)](skills/critique-loop/README.md)
+[![Better-repo-hygiene Tokens](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2FThatXliner%2Fcffd977aeb3539c0571ee27356d3a0b3%2Fraw%2Fbetter-repo-hygiene-tokens.json)](skills/better-repo-hygiene/README.md)
 
 **xtras** bundles my Claude Code skills into one plugin. The prefix tells you what kind of skill it is.
 
@@ -23,6 +24,7 @@ My taste in commits, prose and naming. Take them if you agree.
 Faster or more correct than Claude's defaults, with nothing to disagree with.
 
 - **[better-tools](skills/better-tools/README.md)** — reach for `rg`, `fd`, `sd`, and `jq` instead of `grep`, `find`, and `sed`, with silent fallback when they aren't installed.
+- **[better-repo-hygiene](skills/better-repo-hygiene/README.md)** — clean up uncommitted work, unpushed branches, stashes and stale worktrees in one repo or all of `~/Developer`, deleting only what's provably on GitHub, then report the storage freed.
 
 ### Other utilities
 
