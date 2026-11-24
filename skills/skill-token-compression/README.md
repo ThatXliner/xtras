@@ -1,6 +1,5 @@
 # skill-token-compression
 
-[![Skill-token-compression Tokens](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2FThatXliner%2Fcffd977aeb3539c0571ee27356d3a0b3%2Fraw%2Fskill-token-compression-tokens.json)](https://github.com/ThatXliner/xtras/blob/main/skills/skill-token-compression/SKILL.md)
 
 Part of the [**xtras**](../../README.md) plugin.
 

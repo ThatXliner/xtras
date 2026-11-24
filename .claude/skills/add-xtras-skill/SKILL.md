@@ -31,12 +31,12 @@ Write each rule as the rule, one bad-to-good example (`cooldown: 3` → `cooldow
 Files go in `skills/<name>/`:
 
 - `SKILL.md` holds only what changes what the agent does. Its frontmatter has `name` and a `description` that says when to use it, in the words a user would say.
-- `README.md` copies the format of `skills/x-names/README.md`: token badge, "Part of xtras", what it does, how it works, sources with links, origin.
+- `README.md` copies the format of `skills/x-names/README.md`: token badge (`x-` skills only), "Part of xtras", what it does, how it works, sources with links, origin.
 - `references/` holds material only some runs need. Point to each file with a condition: "If X, read `references/y.md` before Z." Don't bundle full copies of sources. Link them from the README instead.
 
-## 4. Keep it under the badge limit
+## 4. Keep it under the token budget
 
-CI counts `SKILL.md` and turns the badge red at 2,000 tokens. Count locally with `node skills/skill-token-compression/scripts/count_tokens.mjs skills/<name>`. If the body is near or over 2,000, follow `skills/skill-token-compression/SKILL.md`. If the skill needs the tokens, say so rather than cutting rules or examples.
+CI counts the `SKILL.md` of `x-` skills and turns their badge red at 2,000 tokens; hold every other skill to the same 2,000-token budget yourself. Count locally with `node skills/skill-token-compression/scripts/count_tokens.mjs skills/<name>`. If the body is near or over 2,000, follow `skills/skill-token-compression/SKILL.md`. If the skill needs the tokens, say so rather than cutting rules or examples.
 
 ## 5. Verify on a reader that didn't write it
 
@@ -46,11 +46,11 @@ CI counts `SKILL.md` and turns the badge red at 2,000 tokens. Count locally with
 
 ## 6. Wire it into the plugin
 
-- In the root README, add the badge line after the others (same gist URL, with `<name>-tokens.json`), and a one-line listing under the prefix's section.
+- In the root README, add a one-line listing under the prefix's section, and for an `x-` skill also the badge line after the others (same gist URL, with `<name>-tokens.json`).
 - In `.claude-plugin/plugin.json`, add the skill to `description`.
 - Run `claude plugin validate .`.
 - Commit the skill with `/x-commit`. Then bump `version` (minor for a new skill, patch for a fix) in a separate `:bookmark: chore(release): bump to X.Y.Z` commit.
-- Open the PR on a branch. The token-count check comments each skill's count.
+- Open the PR on a branch. The token-count check comments each `x-` skill's count.
 
 ## 7. Install the release
 
