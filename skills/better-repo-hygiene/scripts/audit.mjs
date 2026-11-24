@@ -5,12 +5,17 @@
 //   hold: needs a person, for example uncommitted work, recent activity, or a diverged branch.
 import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync, readdirSync, rmSync, statSync } from "node:fs";
-import { join, resolve } from "node:path";
-import { tmpdir } from "node:os";
+import { basename, join, resolve } from "node:path";
+import { homedir, tmpdir } from "node:os";
 
 const RECENT_HOURS = 24;
 // Ignored paths that a build or install recreates. Any other ignored file (.env, local settings) may exist nowhere else.
-const DISPOSABLE = new Set(["node_modules", ".next", ".expo", ".turbo", ".cache", ".venv", "venv", "__pycache__", ".pytest_cache", ".mypy_cache", ".ruff_cache", "dist", "build", "out", "target", "coverage", "test-results", "playwright-report", ".gradle", "Pods", "DerivedData", ".DS_Store", ".parcel-cache", ".svelte-kit", ".vercel", ".wrangler"]);
+const DISPOSABLE = new Set(["node_modules", ".next", ".expo", ".turbo", ".cache", ".venv", "venv", "__pycache__", ".pytest_cache", ".mypy_cache", ".ruff_cache", "dist", "build", "out", "target", "coverage", "test-results", "playwright-report", ".gradle", "Pods", "DerivedData", ".DS_Store", ".parcel-cache", ".svelte-kit", ".vercel", ".wrangler", ".wxt", ".output"]);
+const isCacheDir = (part) => part === ".cache" || /^\..*_cache$/.test(part) || part === "__pycache__";
+const GENERATED_SUFFIXES = ["src-tauri/gen/schemas"];
+// Ignored files up to this size are archived before their worktree goes; anything bigger needs a person.
+const ARCHIVE_LIMIT_KB = 200 * 1024;
+const BACKUP_DIR = join(homedir(), ".repo-hygiene", "backups", new Date().toISOString().slice(0, 10));
 const args = process.argv.slice(2);
 const json = args.includes("--json");
 const freedFrom = args.includes("--freed") ? args[args.indexOf("--freed") + 1] : null;
@@ -73,8 +78,12 @@ function unrecoverableIgnored(wt, mainPath) {
     .filter((l) => l.startsWith("!! "))
     .map((l) => l.slice(3).replace(/^"|"$/g, ""))
     .filter((rel) => {
-      const name = rel.replace(/\/$/, "").split("/").pop();
-      return !(DISPOSABLE.has(name) && (rel.endsWith("/") || name === ".DS_Store")) && !name.endsWith(".egg-info");
+      const path = rel.replace(/\/$/, "");
+      const parts = path.split("/");
+      const name = parts.at(-1);
+      if (DISPOSABLE.has(name) && (rel.endsWith("/") || name === ".DS_Store")) return false;
+      if (name.endsWith(".egg-info") || parts.some(isCacheDir)) return false;
+      return !GENERATED_SUFFIXES.some((suffix) => path === suffix || path.endsWith("/" + suffix));
     })
     .map((rel) => rel.replace(/\/$/, ""))
     .filter((rel) => {
@@ -206,18 +215,23 @@ function auditRepo(repo) {
       continue;
     }
     const ignored = unrecoverableIgnored(wt.path, worktrees[0].path);
-    if (ignored.length > 0) {
-      add({ kind: label, name: wt.path, verdict: "hold", reason: `${ignored.length} ignored file(s) not in the main checkout; copy or discard them first`, files: ignored.slice(0, 10), kb });
+    const ignoredKb = ignored.reduce((n, rel) => n + sizeKb(join(wt.path, rel)), 0);
+    if (ignoredKb > ARCHIVE_LIMIT_KB) {
+      add({ kind: label, name: wt.path, verdict: "hold", reason: `${ignored.length} ignored file(s) not in the main checkout, ${(ignoredKb / 1024).toFixed(0)} MB, too big to archive unasked`, files: ignored.slice(0, 10), kb });
       continue;
     }
     const recent = hoursSince(Number(git(wt.path, ["log", "-1", "--format=%ct"]))) < RECENT_HOURS;
+    const archive = join(BACKUP_DIR, `${basename(repo)}--${basename(wt.path)}.tgz`);
+    const remove = `git -C ${q(repo)} worktree remove ${q(wt.path)}`;
     add({
       kind: label,
       name: wt.path,
       verdict: recent ? "hold" : "safe",
-      reason: recent ? `last commit in the last 24h (a session may be using it); ${where}` : where,
+      reason: [recent && "last commit in the last 24h (a session may be using it)", where, ignored.length > 0 && `archives ${ignored.length} ignored file(s) to ${archive} first`].filter(Boolean).join("; "),
       recent,
-      cmd: `git -C ${q(repo)} worktree remove ${q(wt.path)}`,
+      files: ignored.length > 0 ? ignored.slice(0, 10) : undefined,
+      archive: ignored.length > 0 ? archive : undefined,
+      cmd: ignored.length > 0 ? `mkdir -p ${q(BACKUP_DIR)} && tar -C ${q(wt.path)} -czf ${q(archive)} ${ignored.map(q).join(" ")} && ${remove}` : remove,
       kb,
     });
   }
