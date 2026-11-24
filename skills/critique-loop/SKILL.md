@@ -23,15 +23,15 @@ A critic with no reference judges against generic taste, which is how "competent
 Critics can read text and look at images; they can't play a video or hear audio. Turn the work into things they can perceive, or they'll judge a still frame and miss that nothing moves.
 
 - **Video or animation:** run `node <this-skill>/scripts/pack.mjs <video> --ref <reference video>... --out <dir>`. It writes 5 fps frame strips (motion), a contact sheet (composition and variety), a spectrogram (audio texture), and prints frozen-frame share and loudness for the work and each reference. Add `--ignore-band 0.6,0.75` when burned-in captions would hide frozen art.
-- **Audio-only:** the same script gives the spectrogram and loudness numbers. Add the script or transcript, and list the music tracks used in the project's recent pieces so a repeat is visible.
+- **Audio-only:** the same script gives the spectrogram and loudness numbers. Add the narration script or lyrics, and list the music tracks used in the project's recent pieces so a repeat is visible.
 - **Images, illustrations, UI:** screenshots at real display size, plus close crops of the focal detail. For UI motion, a screen recording run through `pack.mjs`.
 - **Copy:** the text exactly as it will appear, with the facts file from step 1.
 
-Set hard gates from the numbers where the project has them (gen-vid fails a Clips video above 12% frozen). A gate failure is a FAIL without spending a critic on it.
+Set hard gates from the numbers where the project has them (for example, the Billion video pipeline fails a video above 12% frozen frames). If a gate fails, don't send critics yet: fix it, rebuild the pack, and only then start the round.
 
 ## 3. Two critics, in parallel, with different lenses
 
-Spawn two fresh subagents at the same time (Agent tool, the strongest available model, `xhigh` or the highest effort available, foreground). Pick a lens for each from [references/lenses.md](references/lenses.md), so they look for different things instead of agreeing with each other.
+A round is one evidence pack judged by one pair of critics. Spawn two fresh subagents at the same time (Agent tool, the strongest model available at its highest effort, foreground). Pick a lens for each from [references/lenses.md](references/lenses.md), so they look for different things instead of agreeing with each other.
 
 Give each critic the pack, the brief, the bar from step 1 and taste.md. Tell them:
 
@@ -44,13 +44,13 @@ Give each critic the pack, the brief, the bar from step 1 and taste.md. Tell the
 
 Fix every finding that names a bug, a false claim or something broken, then the top-ranked taste fixes. Rebuild the pack and send a **new** pair of critics, with the previous rounds' findings listed so they can confirm each was fixed. Don't reuse the same agents: a critic anchors on what it said before and approves its own fixes.
 
-When a fix would help every future piece (a kit, template, shared component or prompt), make it there, not just in this piece, and add the lesson to the project's "mistakes the critics caught" list so the next run starts ahead.
+When a fix would help every future piece, make it in the shared code or template the pipeline reuses, not just in this piece. Add the lesson to the project's "mistakes the critics caught" list (create one in the project's skill or docs if there isn't one), so the next run starts ahead.
 
 The work passes when both critics pass and every hard gate holds.
 
 ## 5. After three rounds
 
-If round three still fails, fix the blockers it named, then ship anyway: hand the work back or let the pipeline continue. More rounds cost more than they recover, and recurring output can't miss its slot. Say clearly what's still open.
+If round three still fails, fix the blockers it named, then ship anyway: show the work to the user, or, if a pipeline called this skill, let it continue to publishing. More rounds cost more than they recover, and recurring output can't miss its slot. Say clearly what's still open.
 
 ## 6. Report
 
