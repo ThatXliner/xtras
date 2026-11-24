@@ -1,5 +1,7 @@
 # skill-token-compression
 
+[![Skill-token-compression Tokens](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2FThatXliner%2Fcffd977aeb3539c0571ee27356d3a0b3%2Fraw%2Fskill-token-compression-tokens.json)](https://github.com/ThatXliner/xtras/blob/main/skills/skill-token-compression/SKILL.md)
+
 Part of the [**xtras**](../../README.md) plugin.
 
 Shrinks an agent skill (or CLAUDE.md, AGENTS.md, system prompt) without making it harder to follow. The usual way to cut tokens is to squeeze sentences, and that turns rules into riddles: "counts end in `Count`; factors end in `Multiplier`" becomes "counts and factors say so". The agent then spends reasoning decoding it, or follows the wrong rule. This skill cuts material instead and keeps every rule's example and reason.
