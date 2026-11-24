@@ -90,8 +90,4 @@ Readers recognise names by their shape and their first and last letters rather t
 
 ## References
 
-Open these only when you need them:
-
 - [references/default-conventions.md](references/default-conventions.md): verb meanings, boolean prefixes, unit and count suffixes and letter case, for codebases with no convention of their own.
-- [references/hilton-hermans.md](references/hilton-hermans.md): all 40 of Hilton & Hermans' guidelines, with notes where this file departs from them.
-- [references/kettanaito-cheatsheet.md](references/kettanaito-cheatsheet.md): the full naming cheatsheet with more examples.

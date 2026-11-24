@@ -29,7 +29,7 @@ Teaches Claude to name things so a reader can predict what a name holds or does 
 
 ## Sources
 
-Hilton & Hermans' *Naming Guidelines for Professional Programmers*, Ruud van Asseldonk's "Please put units in names", and [kettanaito/naming-cheatsheet](https://github.com/kettanaito/naming-cheatsheet). The full lists are in [`references/`](references/).
+Hilton & Hermans' [*Naming Guidelines for Professional Programmers*](https://hilton.org.uk/presentations/naming-guidelines), Ruud van Asseldonk's ["Please put units in names"](https://ruuda.nl/2022/please-put-units-in-names), and [kettanaito/naming-cheatsheet](https://github.com/kettanaito/naming-cheatsheet).
 
 ## Usage
 
