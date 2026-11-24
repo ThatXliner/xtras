@@ -1,0 +1,57 @@
+---
+name: critique-loop
+description: Run independent critic subagents on creative work (video, animation, trailers, art, illustration, UI visuals, sound, marketing copy) and revise until they pass, before showing the user. Use whenever you've produced or substantially changed something the user will judge by looking or listening, including output from hyperframes, brag, gen-vid, style-sampling or any image or video pipeline, even if the user didn't ask for a review.
+---
+
+# Critique loop
+
+You can't judge your own creative work well. You know what each shot was meant to say, so you see the intent instead of the result, and anything you didn't think of stays invisible. The user then becomes the critic, round after round ("the animation is very lacking", "that's cheesy", "the music is the same for all of them"). This skill moves those rounds before the user sees the work: critics who didn't make it, who see only the result, judged against a bar the user already set.
+
+Run it on new pieces and on substantial changes. Skip it for a one-word copy fix or a colour tweak the user dictated exactly.
+
+## 1. Set the bar
+
+A critic with no reference judges against generic taste, which is how "competent but bland" passes. Before anything else, collect what the work should be compared with:
+
+- **References the user approved or named:** earlier pieces they liked, a creator they pointed at ("like Rick's Clips"), the project's best performer.
+- **The project's own rules:** a skill or doc for this pipeline (its checklist and "mistakes the critics caught" list), BRANDING.md, a style guide.
+- **The user's taste:** read [references/taste.md](references/taste.md). It lists what this user has rejected before and why.
+- **Facts the work states or implies:** where the product is available, prices, dates, features, names. Critics check claims against these, so put the sources in the pack (README, store listing, release notes).
+
+## 2. Build the evidence pack
+
+Critics can read text and look at images; they can't play a video or hear audio. Turn the work into things they can perceive, or they'll judge a still frame and miss that nothing moves.
+
+- **Video or animation:** run `node <this-skill>/scripts/pack.mjs <video> --ref <reference video>... --out <dir>`. It writes 5 fps frame strips (motion), a contact sheet (composition and variety), a spectrogram (audio texture), and prints frozen-frame share and loudness for the work and each reference. Add `--ignore-band 0.6,0.75` when burned-in captions would hide frozen art.
+- **Audio-only:** the same script gives the spectrogram and loudness numbers. Add the script or transcript, and list the music tracks used in the project's recent pieces so a repeat is visible.
+- **Images, illustrations, UI:** screenshots at real display size, plus close crops of the focal detail. For UI motion, a screen recording run through `pack.mjs`.
+- **Copy:** the text exactly as it will appear, with the facts file from step 1.
+
+Set hard gates from the numbers where the project has them (gen-vid fails a Clips video above 12% frozen). A gate failure is a FAIL without spending a critic on it.
+
+## 3. Two critics, in parallel, with different lenses
+
+Spawn two fresh subagents at the same time (Agent tool, the strongest available model, `xhigh` or the highest effort available, foreground). Pick a lens for each from [references/lenses.md](references/lenses.md), so they look for different things instead of agreeing with each other.
+
+Give each critic the pack, the brief, the bar from step 1 and taste.md. Tell them:
+
+- don't edit any files, and be blunt;
+- name every problem with a location (timestamp, strip, region, line);
+- rank fixes by how much they'd change the user's reaction;
+- end with a verdict: **PASS** ("I'd put this next to the reference without wincing") or **FAIL**.
+
+## 4. Fix and repeat with fresh critics
+
+Fix every finding that names a bug, a false claim or something broken, then the top-ranked taste fixes. Rebuild the pack and send a **new** pair of critics, with the previous rounds' findings listed so they can confirm each was fixed. Don't reuse the same agents: a critic anchors on what it said before and approves its own fixes.
+
+When a fix would help every future piece (a kit, template, shared component or prompt), make it there, not just in this piece, and add the lesson to the project's "mistakes the critics caught" list so the next run starts ahead.
+
+The work passes when both critics pass and every hard gate holds.
+
+## 5. After three rounds
+
+If round three still fails, fix the blockers it named, then ship anyway: hand the work back or let the pipeline continue. More rounds cost more than they recover, and recurring output can't miss its slot. Say clearly what's still open.
+
+## 6. Report
+
+Tell the user, briefly: how many rounds ran, what the critics caught and what changed, the hard-gate numbers against the reference, and anything still open with the critic's location for it. Show the final work alongside, not a description of it.
