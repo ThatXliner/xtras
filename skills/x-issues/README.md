@@ -16,7 +16,7 @@ When you say "defer to gh issue", Claude writes the issue down and goes back to 
 
 **No duplicates.** It searches open and closed issues first and comments on an existing one instead of filing a new one. It picks the right repo, even when that's not the one you're in.
 
-**Labels.** It uses the repo's labels, and creates one only for a kind of issue that will come up again.
+**Labels.** It picks from the repo's existing labels on its own. It never creates a label by itself: for a kind of issue that will come up again, it suggests a name and description and waits for your OK.
 
 **Then it gets back to work.** No code, one line per issue with its link, and back to the task. It also cleans up existing issues on request: merges duplicates, splits big ones, and rewrites dense ones, after you approve the list.
 
