@@ -48,7 +48,7 @@ Rules for the body:
 - **Name the general problem, then the example.** If the user's point is bigger than the case in front of you, file one issue about the bigger thing and use the case as its example. "Glass panels don't use one opacity; the sidebar is the case that prompted this" beats an issue about the sidebar alone, because it gets the whole problem fixed.
 - **Keep the user's own words.** Quote their phrasing for what they want; it carries their intent better than a paraphrase.
 - **Screenshots.** `gh` can't attach images, so describe what the screenshot shows in one line ("the date reads 2026-11-24 where 'Tuesday' would be clearer").
-- **Nothing private.** In a public repo (`gh repo view --json visibility`), leave out secrets, personal details and anything from other private projects.
+- **Nothing private.** In any repo, leave out secrets, personal details and anything from other private projects. Private repos gain collaborators and sometimes go public, and an issue's history keeps what you wrote.
 
 Before filing, reread it as someone who wasn't here. If it takes more than about thirty seconds to see what's being asked, cut the body down until it doesn't.
 
