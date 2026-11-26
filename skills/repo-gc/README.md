@@ -1,4 +1,4 @@
-# better-repo-hygiene
+# repo-gc
 
 
 Part of the [**xtras**](../../README.md) plugin.
@@ -25,12 +25,12 @@ Cleans up the git mess that agent sessions leave behind, in one repo or every re
 
 ## Confirmation and dry run
 
-Every run asks twice: which folders to audit, and then whether to carry out the plan. The plan lists what would be rescued, pushed, archived and removed, and how much space that frees. Nothing changes until you approve it, and you can exclude items. `/better-repo-hygiene --dry-run` shows the same plan and stops without asking, for when you only want to look.
+Every run asks twice: which folders to audit, and then whether to carry out the plan. The plan lists what would be rescued, pushed, archived and removed, and how much space that frees. Nothing changes until you approve it, and you can exclude items. `/repo-gc --dry-run` shows the same plan and stops without asking, for when you only want to look.
 
 ## Tests
 
 ```sh
-node --test skills/better-repo-hygiene/scripts/audit.test.mjs
+node --test skills/repo-gc/scripts/audit.test.mjs
 ```
 
 The tests build a throwaway repo with a pushed, a local-only, a squash-merged and a diverged branch, an applied stash and a lost one, a worktree holding the only copy of a `.env` (archived, then restored from the archive), and a main checkout off `main`. They check each verdict and the `--freed` total.
@@ -41,4 +41,4 @@ The tests build a throwaway repo with a pushed, a local-only, a squash-merged an
 
 ## Usage
 
-Say "clean it up", "audit all my projects", or invoke `/better-repo-hygiene`.
+Say "clean it up", "audit all my projects", or invoke `/repo-gc`.

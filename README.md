@@ -21,7 +21,7 @@ My taste in commits, prose, naming and issues. Take them if you agree.
 Tools for specific jobs, some you call and some that step in on their own.
 
 - **[better-tools](skills/better-tools/README.md)** — reach for `rg`, `fd`, `sd`, and `jq` instead of `grep`, `find`, and `sed`, with silent fallback when they aren't installed.
-- **[better-repo-hygiene](skills/better-repo-hygiene/README.md)** — clean up uncommitted work, unpushed branches, stashes and stale worktrees in one repo or every repo in your projects folder, deleting only what's provably on GitHub, then report the storage freed.
+- **[repo-gc](skills/repo-gc/README.md)** — clean up uncommitted work, unpushed branches, stashes and stale worktrees in one repo or every repo in your projects folder, deleting only what's provably on GitHub, then report the storage freed.
 - **[skill-token-compression](skills/skill-token-compression/README.md)** — cut a skill's token cost without turning its rules into riddles: measure by load level, cut material instead of sentences, and check the result on a fresh reader before shipping.
 - **[show-me](skills/show-me/README.md)** — after a UI change, screenshot the exact screen that changed in the real app (simulator, desktop window or dev server) and show it in the chat, before and after, without being asked. Preview only; never pushes. Not pstack's `show-me-your-work`, which keeps a decision log for long runs.
 - **[critique-loop](skills/critique-loop/README.md)** — have independent critic subagents review creative work (video, art, UI visuals, sound, copy) against your references and taste, and revise until they pass, before you see it.

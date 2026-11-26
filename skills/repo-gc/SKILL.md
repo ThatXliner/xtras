@@ -1,9 +1,9 @@
 ---
-name: better-repo-hygiene
+name: repo-gc
 description: Audit and clean up git leftovers (uncommitted work, unpushed branches, stashes, stale worktrees, a main checkout off its default branch) in one repo or across every repo in a folder, without losing work, then report storage freed. Use when the user says "clean it up", "clean up the worktrees/branches/stashes", "why isn't the main checkout main", "audit all my projects", or asks to free disk space taken by worktrees.
 ---
 
-# Repo hygiene
+# Repo GC
 
 Delete only what is provably on GitHub. Push what isn't, and never force-push. Commit or report stray work, never discard it. Every deletion is a command the audit printed, not one you composed, because the audit is what proves it safe.
 
