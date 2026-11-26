@@ -3,16 +3,18 @@
 [![X-commit Tokens](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2FThatXliner%2Fcffd977aeb3539c0571ee27356d3a0b3%2Fraw%2Fx-commit-tokens.json)](skills/x-commit/README.md)
 [![X-humanizer Tokens](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2FThatXliner%2Fcffd977aeb3539c0571ee27356d3a0b3%2Fraw%2Fx-humanizer-tokens.json)](skills/x-humanizer/README.md)
 [![X-names Tokens](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2FThatXliner%2Fcffd977aeb3539c0571ee27356d3a0b3%2Fraw%2Fx-names-tokens.json)](skills/x-names/README.md)
+[![X-issues Tokens](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2FThatXliner%2Fcffd977aeb3539c0571ee27356d3a0b3%2Fraw%2Fx-issues-tokens.json)](skills/x-issues/README.md)
 
 **xtras** bundles my Claude Code skills into one plugin. The prefix tells you what kind of skill it is.
 
 ### `x-`: opinionated
 
-My taste in commits, prose and naming. Take them if you agree.
+My taste in commits, prose, naming and issues. Take them if you agree.
 
 - **[x-commit](skills/x-commit/README.md)** — commit the way I want, not the way Claude defaults to: gitmoji + conventional commits, atomic enforcement, why-not-what messaging.
 - **[x-humanizer](skills/x-humanizer/README.md)** — strip the AI tells out of generated prose by fixing rhythm and sentence mechanics.
 - **[x-names](skills/x-names/README.md)** — name variables, fields, types and functions so the call site alone tells the reader what they hold: units in names, no `data`/`Manager`, verbs that keep one meaning.
+- **[x-issues](skills/x-issues/README.md)** — "defer to gh issue" files one short, plain-language issue per idea in the right repo, without duplicates, then gets back to work.
 
 ### Other utilities
 
