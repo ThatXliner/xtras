@@ -10,7 +10,7 @@ description: File a GitHub issue for something the user wants to deal with later
 ## 1. Find where it goes
 
 - **Repo.** Use the current repo unless the user names another or the idea plainly belongs to a different project ("defer to gh issue on the honeypot repo"). If you file somewhere other than the current checkout, say which repo in your reply.
-- **Search first.** Run `gh issue list --state all --search "<two or three key words>"` and also try a synonym. If an open issue already covers it, add a comment there instead of filing a new one. If a closed one does, mention it and ask whether to reopen. Duplicates split the discussion, and the user has had to merge them by hand before.
+- **Search first.** Run `gh issue list --state all --search "<two or three key words>"` and also try a synonym. If an open issue already covers it, add a comment there instead of filing a new one. If a closed one does, mention it and ask whether to reopen. Duplicates split the discussion.
 - **Trackers.** If an epic or tracking issue covers this area, link the new issue from it (add it to its checklist, or `gh issue edit <tracker>` to append a line).
 
 ## 2. One issue per idea
@@ -54,7 +54,7 @@ Before filing, reread it as someone who wasn't here. If it takes more than about
 
 ## 4. Label it
 
-Run `gh label list` and add the labels that fit (`gh issue create --label`). If none fits and this kind of issue will come up again, don't create a label yourself. File the issue without it, then ask the user: give the label's name and a one-line description ("New label `card-request`: requests for new cards?"), and wait for an OK. Labels are shared by everyone on the repo, so adding one is the user's call. On an OK, run `gh label create <name> --description "..."` and add it to the issue. Don't propose a label for a one-off.
+Run `gh label list` and add the labels that fit (`gh issue create --label`). If none fits and this kind of issue will come up again, don't create a label yourself. File the issue without it, then ask the user: give the label's name and a one-line description ("New label `card-request`: requests for new cards?"), and wait for an OK. Labels are shared by everyone on the repo, so creating one is the user's call. On an OK, run `gh label create <name> --description "..."` and add it to the issue. Don't propose a label for a one-off.
 
 ## 5. Go back to work
 
@@ -64,4 +64,4 @@ Later, when work that resolves an issue ships, put `Closes #N` in the PR descrip
 
 ## Cleaning up existing issues
 
-When asked to triage, simplify or dedupe issues: merge duplicates into the older one (comment with a link, then close the newer one as a duplicate), split issues that cover several ideas under a tracker, label the unlabeled ones, and rewrite dense bodies using section 3. Show the user the list of changes and wait for their OK before closing or merging anything.
+If the user asks to triage, simplify, split or dedupe the issues already in a repo, read `references/cleanup.md` before changing any issue.
