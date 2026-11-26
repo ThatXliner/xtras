@@ -27,7 +27,9 @@ This is the part that matters most. Agent-written issues tend to be dense: inter
 **Body**, using only the sections that have something in them:
 
 ```markdown
-<What's wrong or what we want, and why it matters. Two or three sentences.>
+<A tiny story of the problem as someone using it would hit it. Two to four sentences.>
+
+<What we want instead, in one or two sentences.>
 
 **Where this came from:** <the user's words, quoted, or what the screenshot shows; link to the PR, commit or issue it came up in>
 
@@ -40,6 +42,7 @@ This is the part that matters most. Agent-written issues tend to be dense: inter
 
 Rules for the body:
 
+- **Tell it as a story.** Open with a concrete moment: who is doing what, and what goes wrong or what's missing. A reader gets "You and Sam are editing a doc. Sam leaves for lunch, but their avatar still looks like they're typing" faster than "presence has no idle state", and the story shows why it matters without arguing for it. For a bug, the story is the steps and what you saw.
 - **Short sentences, everyday words.** If a term only makes sense to someone who read the code, say what it does instead: "the 'who's here' avatars" rather than `PresenceStrip`. File paths and function names go in only when they are the point of the issue, such as a bug in one function.
 - **What and why, not how.** Don't write an implementation plan. Whoever picks it up will plan with the code in front of them, and a plan written today goes stale. Keep a "how" only when the user already decided it; it goes under **Already decided**.
 - **Name the general problem, then the example.** If the user's point is bigger than the case in front of you, file one issue about the bigger thing and use the case as its example. "Glass panels don't use one opacity; the sidebar is the case that prompted this" beats an issue about the sidebar alone, because it gets the whole problem fixed.
