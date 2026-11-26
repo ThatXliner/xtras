@@ -54,7 +54,7 @@ Before filing, reread it as someone who wasn't here. If it takes more than about
 
 ## 4. Label it
 
-Run `gh label list` and add the labels that fit (`gh issue create --label`). If none fits and this kind of issue will come up again, create one with a one-line description (`gh label create card-request --description "..."`). Don't create a label for a one-off.
+Run `gh label list` and add the labels that fit (`gh issue create --label`). If none fits and this kind of issue will come up again, don't create a label yourself. File the issue without it, then ask the user: give the label's name and a one-line description ("New label `card-request`: requests for new cards?"), and wait for an OK. Labels are shared by everyone on the repo, so adding one is the user's call. On an OK, run `gh label create <name> --description "..."` and add it to the issue. Don't propose a label for a one-off.
 
 ## 5. Go back to work
 
