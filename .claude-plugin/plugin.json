@@ -1,6 +1,6 @@
 {
   "name": "xtras",
-  "version": "2.13.0",
+  "version": "2.13.1",
   "description": "Extras for Claude Code — x-commit (gitmoji + conventional atomic commits), x-humanizer (de-AI-ify writing), x-names (identifier naming), x-issues (readable GitHub issues for deferred work), better-tools (rg/fd/sd over POSIX tools), repo-gc (git cleanup without losing work), skill-token-compression (shrink skills without losing clarity), show-me (screenshot UI changes in the real app and show them unasked) and critique-loop (independent critics for creative work)",
   "author": {
     "name": "ThatXliner"
