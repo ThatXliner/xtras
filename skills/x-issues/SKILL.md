@@ -34,7 +34,7 @@ This is the part that matters most. Agent-written issues tend to be dense: inter
 **Where this came from:** <the user's words, quoted, or what the screenshot shows; link to the PR, commit or issue it came up in>
 
 **Already decided:**
-- <a decision the user made, one line each>
+- <a requirement or decision the user gave, one line each>
 
 **Open questions:**
 - <something still to figure out>
@@ -44,13 +44,14 @@ Rules for the body:
 
 - **Tell it as a story.** Open with a concrete moment: who is doing what, and what goes wrong or what's missing. A reader gets "You and Sam are editing a doc. Sam leaves for lunch, but their avatar still looks like they're typing" faster than "presence has no idle state", and the story shows why it matters without arguing for it. For a bug, the story is the steps and what you saw.
 - **Short sentences, everyday words.** If a term only makes sense to someone who read the code, say what it does instead: "the 'who's here' avatars" rather than `PresenceStrip`. File paths and function names go in only when they are the point of the issue, such as a bug in one function.
-- **What and why, not how.** Don't write an implementation plan. Whoever picks it up will plan with the code in front of them, and a plan written today goes stale. Keep a "how" only when the user already decided it; it goes under **Already decided**.
+- **What and why, not how.** Don't write an implementation plan of your own. Whoever picks it up will plan with the code in front of them, and a plan written today goes stale.
+- **Move the user's details, don't drop them.** Every requirement, decision or fact the user gave goes in the issue: wants and decisions under **Already decided**, evidence under **Where this came from**. Plain doesn't mean thin. Cut only what you added yourself, such as internals, guesses and your own plans.
 - **Name the general problem, then the example.** If the user's point is bigger than the case in front of you, file one issue about the bigger thing and use the case as its example. "Glass panels don't use one opacity; the sidebar is the case that prompted this" beats an issue about the sidebar alone, because it gets the whole problem fixed.
 - **Keep the user's own words.** Quote their phrasing for what they want; it carries their intent better than a paraphrase.
 - **Screenshots.** `gh` can't attach images, so describe what the screenshot shows in one line ("the date reads 2026-11-24 where 'Tuesday' would be clearer").
 - **Nothing private.** In any repo, leave out secrets, personal details and anything from other private projects. Private repos gain collaborators and sometimes go public, and an issue's history keeps what you wrote.
 
-Before filing, reread it as someone who wasn't here. If it takes more than about thirty seconds to see what's being asked, cut the body down until it doesn't.
+Before filing, reread it as someone who wasn't here. If it takes more than about thirty seconds to see what's being asked, shorten the story or cut your own additions; keep the user's details.
 
 ## 4. Label it
 
